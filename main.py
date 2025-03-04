@@ -16,19 +16,23 @@ while True:
         if opcao == 1:
             valor_saque = float(input('Informe o valor de saque: '))
 
-            if valor_saque > limite_saque:
-                print('Não é possível sacar valores acima de R$500,00.')
-            
-            elif qtde_limite == 0:
-                print('Você atingiu o limite diário de saque.')
+            if valor_saque > 0:
 
-            elif valor_saque > saldo_conta:
-                print(f'Você não tem saldo em conta. Atual: R${saldo_conta:.2f}')
-            
+                if valor_saque > limite_saque:
+                    print('Não é possível sacar valores acima de R$500,00.')
+                
+                elif qtde_limite == 0:
+                    print('Você atingiu o limite diário de saque.')
+
+                elif valor_saque > saldo_conta:
+                    print(f'Você não tem saldo em conta. Atual: R${saldo_conta:.2f}')
+                
+                else:
+                    qtde_limite -= 1
+                    saldo_conta -= valor_saque
+                    print(f'Saque: R${valor_saque:.2f}. Saldo: R${saldo_conta:.2f}')
             else:
-                qtde_limite -= 1
-                saldo_conta -= valor_saque
-                print(f'Saque: R${valor_saque:.2f}. Saldo: R${saldo_conta:.2f}')
+                print('Informe valores positivos.')
 
     except ValueError:
         print(f'Erro!')
