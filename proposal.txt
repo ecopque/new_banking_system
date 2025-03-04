@@ -1,1 +1,21 @@
-...
+# Objetivo geral:
+- Sistema bancário com: sacar, depositar e visualizar extrato.
+
+# Operação de depósito:
+- Depositar valores positivos (não negativo).
+- Apenas um usuário.
+- Todos os depósitos devem ser armazenados em uma variável e exibidos na operação de extrato.
+
+# Operação de saque:
+- Limite de 3 saques diários.
+- Limite por saque: R$500,00.
+- Se user não tiver saldo em conta, sistema deve exibir mensagem informando que não é possível sacar por falta de saldo.
+- Todos os saques devem ser armazenados em uma variável e exibidos na operação de extrato.
+
+# Operação de extrato:
+- Deve listar todos os depósitos e saques.
+- No fim da listagem, exibir o saldo atual da conta.
+- Deve ser exibido no dormato "R$00.00".
+
+
+# Edson Copque | https://linktr.ee/edsoncopque
