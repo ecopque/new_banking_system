@@ -41,7 +41,7 @@ while True:
             if deposit_amount > 0:
                 deposits.append(deposit_amount)
                 updated_balance += deposit_amount
-                print(f'Deposit: R${deposit_amount:.2f}. Updated balance: R${updated_balance}.')
+                print(f'Deposit: R${deposit_amount:.2f}. Updated balance: R${updated_balance:.2f}.')
             else:
                 print('Enter only positive values.')
 
@@ -53,7 +53,7 @@ while True:
                 for i1 in deposits:
                     print(f'R${i1:.2f}')
             else:
-                print('Nenhum depósito realizado.')
+                print('No deposit made.')
             
             print('Saques:')
             if cashouts:
@@ -61,6 +61,8 @@ while True:
                     print(f'R${i2:.2f}')
             else:
                 print('No deposit made.')
+            
+            print(f'Balance: R${updated_balance:.2f}')
 
         elif options == 5:
             print('### DEVELOPER DATA ###')
