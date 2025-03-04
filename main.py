@@ -81,4 +81,9 @@ while True:
         print(f'Please enter a valid input.')
 
 
-# Edson Copque | https://linktr.ee/edsoncopque
+'''
+. Developer: Edson Copque
+. Website: https://linktr.ee/edsoncopque
+. GitHub: https://github.com/ecopque
+. Signal Messenger: ecop.01
+'''
