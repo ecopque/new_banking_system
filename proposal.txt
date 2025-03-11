@@ -31,5 +31,7 @@ A função depósito deve receber os argumentos apenas por posição (positional
 
 A função extrato deve receber os argumentos por posição e nome (positional only and keyword only). Argumentos posicionais: saldo, argumentos nomeados: extrato.
 
+Precisams criar duas novas funções: criar usuário e criar conta corrente. Fique a vontade para adicionar mais funções, exemplo: listar contas.
+
 
 # Edson Copque | https://linktr.ee/edsoncopque
