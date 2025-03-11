@@ -19,7 +19,7 @@
 
 -------------------------------
 # ATUALIZAÇÃO:
-Precisamos deixar o código mais modularizado, para isso vamos criar funções para as operações existentes: sacarm depositar e visualizar histórico.
+Precisamos deixar o código mais modularizado, para isso vamos criar funções para as operações existentes: sacarm depositar e visualizar extrato.
 
 Além disso, para a versão 2 do nosso sistema precisamos criar duas novas funções: criar usuário (cliente do banco) e criar conta corrente (vincular com usuário).
 
