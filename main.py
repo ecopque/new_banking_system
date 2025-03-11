@@ -1,5 +1,17 @@
 # FILE: /main.py
 
+# Estrutura de dados:
+usuarios = []
+contas = []
+
+# Funções para operações bancárias:
+# A função de saque deve receber os argumentos apenas por nome (keyword only). Sugestão de argumentos: saldo, valor, extrato, limite, numero_saques, limite_saques. Sugestão de retorno: saldo e extrato.
+def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
+    ...
+
+
+
+
 updated_balance = 0
 limit_cashout = 500
 limit_qtde = 3
