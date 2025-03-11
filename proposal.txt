@@ -19,6 +19,7 @@
 
 -------------------------------
 # ATUALIZAÇÃO:
+
 Precisamos deixar o código mais modularizado, para isso vamos criar funções para as operações existentes: sacarm depositar e visualizar extrato.
 
 Além disso, para a versão 2 do nosso sistema precisamos criar duas novas funções: criar usuário (cliente do banco) e criar conta corrente (vincular com usuário).
@@ -32,6 +33,8 @@ A função depósito deve receber os argumentos apenas por posição (positional
 A função extrato deve receber os argumentos por posição e nome (positional only and keyword only). Argumentos posicionais: saldo, argumentos nomeados: extrato.
 
 Precisams criar duas novas funções: criar usuário e criar conta corrente. Fique a vontade para adicionar mais funções, exemplo: listar contas.
+
+O programa deve armazenar os usuários em uma lista, um usuário é composto por: nome, data de nascimento, cpf e endereço. O endereço é uma string com o formato: logradouro, nro - bairro - cidade/sigla estado. Deve ser armazenado somente os números do CPF. Não podemos cadastrar 2 usuários com o mesmo CPF.
 
 
 # Edson Copque | https://linktr.ee/edsoncopque
