@@ -1,14 +1,56 @@
 # FILE: /main.py
 
-# Estrutura de dados:
 usuarios = []
 contas = []
 
-# Funções para operações bancárias:
-# A função de saque deve receber os argumentos apenas por nome (keyword only). Sugestão de argumentos: saldo, valor, extrato, limite, numero_saques, limite_saques. Sugestão de retorno: saldo e extrato.
-def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
-    ...
+def criar_usuario(nome, nascimento, cpf: str, endereco: str): #1:
+    for i3 in usuarios:
+        if i3['cpf'] == cpf:
+            print('Erro: CPF já cadastrado.')
+            return None
+    
+    usuario = {
+        'nome': nome,
+        'nascimento': nascimento,
+        'cpf': cpf,
+        'endereco': endereco
+    }
 
+    usuarios.append(usuario)
+    print(f'Usuário {nome} cadastrado com sucesso.')
+    return usuario
+
+
+def criar_conta_corrente(usuario):
+    numero_conta = (len(contas) + 1)
+    
+    conta = {
+        'agencia': '0001',
+        'numero_conta': numero_conta,
+        'usuario': usuario
+    }
+
+    contas.append(conta)
+    print(f'Conta criada com sucesso para {usuario['nome']}. Número de conta: {numero_conta}.')
+    return conta
+
+# Keyword only:
+def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
+    if valor > limite:
+        print('Não é possível sacar valores acima do limite.')
+    elif numero_saques >= limite_saques:
+        print('Você atingiu o limite diário de saques.')
+    elif valor > saldo:
+        print(f'Saldo insuficiente. Saldo atual: {saldo:.2f}.')
+    else:
+        saldo -= valor
+        extrato.append(f'Saque: R${valor:.2f}.')
+        print(f'Saque: {valor:.2f}. Saldo: {saldo:.2f}.')
+        return saldo, extrato
+
+
+    
+# saldo, valor, extrato, limite, numero_saques, limite_saques. Sugestão de retorno: saldo e extrato
 
 
 
