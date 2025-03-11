@@ -17,5 +17,11 @@
 - No fim da listagem, exibir o saldo atual da conta.
 - Deve ser exibido no formato "R$00.00".
 
+-------------------------------
+# ATUALIZAÇÃO:
+Precisamos deixar o código mais modularizado, para isso vamos criar funções para as operações existentes: sacarm depositar e visualizar histórico.
+
+Além disso, para a versão 2 do nosso sistema precisamos criar duas novas funções: criar usuário (cliente do banco) e criar conta corrente (vincular com usuário).
+
 
 # Edson Copque | https://linktr.ee/edsoncopque
