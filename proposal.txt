@@ -38,5 +38,7 @@ O programa deve armazenar os usuários em uma lista, um usuário é composto por
 
 O programa deve armazenar contas em uma lista, uma conta é composta por: agência, número da conta e usuário. O número da conta é sequencial, iniciando em 1. O número da agência é fixo: "0001". O usuário pode ter mais de uma conta, mas uma conta pertence a somente um usuário.
 
+Dica: para vincular um usuário a uma conta, você pode filtrar a lista de usuários buscando o número do CPF informado para cada usuário da lista.
+
 
 # Edson Copque | https://linktr.ee/edsoncopque
