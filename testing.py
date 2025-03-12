@@ -20,3 +20,21 @@ def criar_usuario(*, nome, nascimento, cpf: str, endereco: str):
     usuarios.append(usuario)
     print(f'Usuário {usuario['nome']} cadastrado com sucesso.')
     return usuario
+
+#OK: 2. O programa deve armazenar contas em uma lista, uma conta é composta por: agência, número da conta e usuário. O número da conta é sequencial, iniciando em 1. O número da agência é fixo: "0001". O usuário pode ter mais de uma conta, mas uma conta pertence a somente um usuário.
+
+contas = list()
+
+def criar_conta(usuario):
+    ...
+
+    numero_conta = (len(contas) + 1)
+
+    conta = {
+        'agencia': '0001',
+        'numero_conta': numero_conta,
+        'usuario': usuario
+    }
+
+    contas.append(conta)
+    print(f'Cadas registrada: {usuario['']}')
