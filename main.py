@@ -2,21 +2,24 @@
 
 users = list()
 def create_user(name, birth, cpf: str, address: str): #1:
+    cpf_exists = False
     for i1 in users:
         if i1['cpf'] == cpf:
+            cpf_exists = True
             print('CPF already registered.')
             return
+    
+    if not cpf_exists:
+        new_user = {
+            'name': name,
+            'birth': birth,
+            'cpf': cpf,
+            'address': address
+        }
 
-    new_user = {
-        'name': name,
-        'birth': birth,
-        'cpf': cpf,
-        'address': address
-    }
-
-    users.append(new_user)
-    print(f'User {name} created successfully.')
-    # return new_user
+        users.append(new_user)
+        print(f'User {name} created successfully.')
+        # return new_user
 
 accounts = list()
 def create_current_account(cpf):
