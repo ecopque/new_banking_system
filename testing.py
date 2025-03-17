@@ -19,4 +19,5 @@ def create_users(name, birth, cpf: str, address: str):
 
         users.append(new_users)
         print(f'User {name} created.')
-        
+    
+...
