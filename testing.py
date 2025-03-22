@@ -24,3 +24,25 @@ def create_user(name, birth, cpf: str, address: str):
     return
 
 # def create_current_account():
+accounts = list()
+def create_current_account(cpf):
+    user_found = None
+    for i2 in users:
+        if i2['cpf'] == cpf:
+            user_found = i2
+            print(f'User found: {user_found}')
+            break
+    
+    if not user_found:
+        print('User not found.')
+        return
+
+    account_number = (len(accounts) + 1)
+    account_new = {
+        'agency': '0001',
+        'account_number': account_number,
+        'user': user_found
+    }
+
+    accounts.append(account_new)
+    print('Account created successfully.')
