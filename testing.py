@@ -23,4 +23,4 @@ def create_user(name, birth, cpf: str, address: str):
     print(f'User {name} created.')
     return
 
-# 
+# def create_current_account():
