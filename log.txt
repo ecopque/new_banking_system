@@ -1,6 +1,8 @@
 # FILE: /log.txt
 
-# 2025-03-10: 
-. The log counts from version 2.0.
-. #1: Is there a need to type this way?
-. 
+#1: Importa as classes ABC e o decorador @abstractmethod do módulo abc.
+Objetivo: Permitir a criação de classes abstratas e métodos abstratos, para que as classes filhas sejam obrigadas a implementar certos métodos.
+
+#2:Define o método construtor __init__ que recebe um parâmetro value e o armazena na variável de instância self.value.
+#3: Define o método abstrato register que recebe um parâmetro account. Objetivo: Forçar que as classes filhas implementem este método para registrar a transação na conta.
+#4: Se o valor for válido, incrementa o saldo (balance) da conta com o valor do depósito.
