@@ -3,6 +3,9 @@
 from abc import ABC, abstractmethod #1:
 from datetime import date
 
+# ==============================
+# 1) ABSTRACT CLASSES AND SUBCLASSES (POLYMORPHISM)
+# ==============================
 class Transaction(ABC):
     def __init__(self, value: float): #2:
         self.value = value #2:
@@ -16,6 +19,7 @@ class Deposit(Transaction):
         if self.value <= 0:
             print('Enter only positive values.')
             return False
+       
         else:
             account.balance += self.value #4:
             account.history.add_transaction(f'Deposit: R${self.value:.2f}.')
@@ -26,9 +30,11 @@ class Withdraw(Transaction):
         if self.value <= 0:
             print('Enter only positive values.')
             return False
+        
         elif self.value > account.balance:
             print(f'You do not have enough balance. Current: R${account.balance:.2f}.')
             return False
+        
         else:
             account.balance -= self.value
             account.history.add_transaction(f'Withdrawal: R${self.value:.2f}.')
