@@ -1,5 +1,28 @@
 # FILE: /main.py
 
+from abc import ABC, abstractmethod
+from datetime import date
+
+class Transaction(ABC):
+    def __init__(self, value):
+        self.value = value
+
+    @abstractmethod
+    def register(self, account):
+        pass
+
+class Deposit(Transaction):
+    def register(self, account):
+        if self.value <= 0:
+            print('Enter only positive values.')
+            return False
+
+        else:
+            account.balance += self.value
+            account.history.add_transaction(f'Deposit: R${self.value:.2f}.')
+
+
+
 users = list()
 def create_user(name, birth, cpf: str, address: str): #1:
     cpf_exists = False
