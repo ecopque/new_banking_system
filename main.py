@@ -77,7 +77,7 @@ class Account:
 
 
 
-
+########################
 users = list()
 def create_user(name, birth, cpf: str, address: str): #1:
     cpf_exists = False
