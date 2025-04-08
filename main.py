@@ -3,6 +3,8 @@
 from abc import ABC, abstractmethod #1:
 from datetime import date
 
+# UML diagram
+
 # ==============================
 # 1) ABSTRACT CLASSES AND SUBCLASSES (POLYMORPHISM)
 # ==============================
@@ -15,6 +17,7 @@ class Transaction(ABC):
         pass
 
 class Deposit(Transaction):
+    @abstractmethod
     def register(self, account):
         if self.value <= 0:
             print('Enter only positive values.')
@@ -26,6 +29,7 @@ class Deposit(Transaction):
             return True
 
 class Withdraw(Transaction):
+    @abstractmethod
     def register(self, account):
         if self.value <= 0:
             print('Enter only positive values.')
@@ -43,8 +47,33 @@ class Withdraw(Transaction):
 # ==============================
 # 2) SUPPORT CLASSES
 # ==============================
+class History:
+    def __init__(self):
+        self.transactions = list()
 
+    def add_transaction(self, description: str):
+        self.transactions.append(description)
 
+# ==============================
+# 3) ACCOUNT AND SUBCLASS (INHERITANCE)
+# ==============================
+class Account:
+    def __init__(self, client, number, agency='0001', limit=500):
+        self.client = client
+        self.number = number
+        self.agency = agency
+        self.limit = limit
+
+        self.balance = 0
+        self.history = History()
+
+    def deposit(self, value):
+        transaction = Deposit(value)
+        return transaction.register(self)
+
+    def withdraw(self, value):
+        transaction = Withdraw(value)
+        return transaction.register(self)
 
 
 
