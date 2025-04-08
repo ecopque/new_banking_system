@@ -40,6 +40,13 @@ class Withdraw(Transaction):
             account.history.add_transaction(f'Withdrawal: R${self.value:.2f}.')
             return True
 
+# ==============================
+# 2) SUPPORT CLASSES
+# ==============================
+
+
+
+
 
 
 users = list()
