@@ -75,6 +75,13 @@ class Account:
         transaction = Withdraw(value)
         return transaction.register(self)
 
+# ==============================
+# 4) CLIENT CLASS
+# ==============================
+class Client:
+    def__init__(self, name, birth, cpf, address):
+    ...
+
 
 
 ########################
