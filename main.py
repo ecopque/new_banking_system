@@ -81,6 +81,8 @@ class Account:
 class Client:
     def__init__(self, name, birth, cpf, address):
     # Verifying StackOverflow.
+    # https://stackoverflow.com/questions/5022506/python-subclass-inheritance
+    # https://stackoverflow.com/questions/62589193/how-to-get-class-diagram-from-python-source-code
 
 
 
