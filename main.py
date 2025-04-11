@@ -75,6 +75,15 @@ class Account:
         transaction = Withdraw(value)
         return transaction.register(self)
 
+class CurrentAccount(Account):
+    def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
+        super().__init__(client, number, agency, limit)
+        self.limit_withdrawals = limit_withdrawals
+        self.number_withdrawals = 0
+
+    def withdraw(self, value):
+        if self.number_withdrawals
+
 # ==============================
 # 4) CLIENT CLASS
 # ==============================
@@ -110,6 +119,21 @@ def create_user(name, birth, cpf: str, address: str):
         user.append(new_user)
         print(f'User {name} created successfully.')
 
+def create_current_account(cpf):
+    user_found = None
+
+    for i2 in users:
+        if i2.cpf == cpf:
+            user_found = i2
+            print(f'User found: {user_found.name}')
+            break
+
+    if not user_found:
+        print('User not found.')
+        return
+
+    else:
+        account_new = ...
 
 
 
