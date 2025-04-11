@@ -79,7 +79,24 @@ class Account:
 # 4) CLIENT CLASS
 # ==============================
 class Client:
-    def__init__(self, name, birth, cpf, address):
+    def __init__(self, name, birth, cpf, address):
+        self.name = name
+        self.birth = birth
+        self.cpf = cpf
+        self.address = address
+
+        self.accounts = list()
+
+    def add_account(self, account):
+        self.accounts.append(account)
+    
+
+
+
+
+
+
+
     # Verifying StackOverflow.
     # https://stackoverflow.com/questions/5022506/python-subclass-inheritance
     # https://stackoverflow.com/questions/62589193/how-to-get-class-diagram-from-python-source-code
