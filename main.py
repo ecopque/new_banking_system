@@ -82,7 +82,8 @@ class CurrentAccount(Account):
         self.number_withdrawals = 0
 
     def withdraw(self, value):
-        if self.number_withdrawals
+        if self.number_withdrawals >= self.limit_withdrawals:
+            ...
 
 # ==============================
 # 4) CLIENT CLASS
@@ -133,7 +134,7 @@ def create_current_account(cpf):
         return
 
     else:
-        account_new = ...
+       ...
 
 
 
