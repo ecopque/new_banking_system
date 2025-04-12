@@ -83,8 +83,19 @@ class CurrentAccount(Account):
 
     def withdraw(self, value):
         if self.number_withdrawals >= self.limit_withdrawals:
-            ...
+            print('You have reached your daily withdrawal limit.')
+            return False
 
+        if value > self.limit:
+            print(f'It is not possible to withdraw amounts above {self.limit}.')
+            return False
+        
+        success = super().withdraw(value)
+        if succes:
+            self.number_withdrawals += 1
+        
+        return success
+        
 # ==============================
 # 4) CLIENT CLASS
 # ==============================
