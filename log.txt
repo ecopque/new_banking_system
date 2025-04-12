@@ -11,3 +11,11 @@
 #6: checks if the withdrawal amount is valid (greater than zero). If invalid, prints an error message and returns False.
 #7: If the withdrawal amount exceeds the account balance, it prints an error message and returns False.
 #8: If the withdrawal is valid, it reduces the account balance and adds the withdrawal to the transaction history.
+
+#9: The History class holds a list of transactions made for an account.
+#10: Adds a transaction description (e.g., deposit or withdrawal) to the transaction history.
+
+#11: Defines the Account class, which holds account information, including the client, account number, agency, and balance. It also has a transaction history.
+#12: A method to perform a deposit. It creates a Deposit transaction and registers it for the account.
+#13: A method to perform a withdrawal. It creates a Withdraw transaction and registers it for the account.
+

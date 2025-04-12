@@ -43,33 +43,33 @@ class Withdraw(Transaction):
 # ==============================
 # 2) SUPPORT CLASSES
 # ==============================
-class History:
-    def __init__(self):
-        self.transactions = list()
+class History: #9:
+    def __init__(self): #9:
+        self.transactions = list() #9:
 
-    def add_transaction(self, description: str):
-        self.transactions.append(description)
+    def add_transaction(self, description: str): #10:
+        self.transactions.append(description) #10:
 
 # ==============================
 # 3) ACCOUNT AND SUBCLASS (INHERITANCE)
 # ==============================
 class Account:
-    def __init__(self, client, number, agency='0001', limit=500):
-        self.client = client
-        self.number = number
-        self.agency = agency
-        self.limit = limit
+    def __init__(self, client, number, agency='0001', limit=500): #11:
+        self.client = client #11:
+        self.number = number #11:
+        self.agency = agency #11:
+        self.limit = limit #11:
 
-        self.balance = 0
-        self.history = History()
+        self.balance = 0 #11:
+        self.history = History() #11:
 
-    def deposit(self, value):
-        transaction = Deposit(value)
-        return transaction.register(self)
+    def deposit(self, value): #12:
+        transaction = Deposit(value) #12:
+        return transaction.register(self) #12:
 
-    def withdraw(self, value):
-        transaction = Withdraw(value)
-        return transaction.register(self)
+    def withdraw(self, value): #13:
+        transaction = Withdraw(value) #13:
+        return transaction.register(self) #13:
 
 class CurrentAccount(Account):
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
