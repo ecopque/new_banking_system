@@ -7,3 +7,7 @@
 
 #4: register method for Deposit checks if the deposit amount is valid (greater than zero). If invalid, prints an error message and returns False.
 #5: If the deposit is valid, it updates the account's balance and adds the deposit to the transaction history.
+
+#6: checks if the withdrawal amount is valid (greater than zero). If invalid, prints an error message and returns False.
+#7: If the withdrawal amount exceeds the account balance, it prints an error message and returns False.
+#8: If the withdrawal is valid, it reduces the account balance and adds the withdrawal to the transaction history.

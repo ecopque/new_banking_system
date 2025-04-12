@@ -26,19 +26,19 @@ class Deposit(Transaction):
             return True
 
 class Withdraw(Transaction):
-    def register(self, account):
-        if self.value <= 0:
-            print('Enter only positive values.')
-            return False
+    def register(self, account): #6:
+        if self.value <= 0: #6:
+            print('Enter only positive values.') #6:
+            return False #6:
         
-        elif self.value > account.balance:
-            print(f'You do not have enough balance. Current: R${account.balance:.2f}.')
-            return False
+        elif self.value > account.balance: #7:
+            print(f'You do not have enough balance. Current: R${account.balance:.2f}.') #7:
+            return False #7:
         
-        else:
-            account.balance -= self.value
-            account.history.add_transaction(f'Withdrawal: R${self.value:.2f}.')
-            return True
+        else: #8:
+            account.balance -= self.value #8:
+            account.history.add_transaction(f'Withdrawal: R${self.value:.2f}.') #8:
+            return True #8:
 
 # ==============================
 # 2) SUPPORT CLASSES
