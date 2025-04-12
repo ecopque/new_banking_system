@@ -105,22 +105,21 @@ class Client: #19:
     def add_account(self, account): #20:
         self.accounts.append(account) #20:
     
-# ==============================
-# 5) GLOBAL LISTS (USERS/ACCOUNTS) & ORIGINAL FUNCTIONS
-# ==============================
-users = list()
-accounts = list()
 
-def create_user(name, birth, cpf: str, address: str):
+# Global Lists & Original Functions:
+users = list() #21:
+accounts = list() #21:
+
+def create_user(name, birth, cpf: str, address: str): #22:
     cpf_exists = False
     
-    for i1 in users:
+    for i1 in users: #22:
         if i1.cpf == cpf:
             cpf_exists = True
             print('CPF already registered.')
             return
         
-    if not cpf_exists:
+    if not cpf_exists: #22:
         new_user = Client(name, birth, cpf, address)
         users.append(new_user)
         print(f'User {name} created successfully.')

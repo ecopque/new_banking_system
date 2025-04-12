@@ -28,3 +28,8 @@
 #19: Defines the Client class to represent a customer. It holds client information (name, birth, CPF, address) and a list of accounts.
 #20: Adds an account to the client's list of accounts.
 
+#21: Two global lists, users (to store clients) and accounts (to store all accounts).
+
+#22: A function to create a new user by checking if the CPF already exists.
+
+#23: 
