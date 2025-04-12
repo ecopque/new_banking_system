@@ -3,33 +3,29 @@
 from abc import ABC, abstractmethod #1:
 from datetime import date
 
-# UML diagram
+# UML Architecture and Class Hierarchy
 
-# ==============================
-# 1) ABSTRACT CLASSES AND SUBCLASSES (POLYMORPHISM)
-# ==============================
+# Abstract Classes and Subclasses (Polymorphism)
 class Transaction(ABC):
-    def __init__(self, value: float): #2:
-        self.value = value #2:
+    def __init__(self, value: float):
+        self.value = value
 
     @abstractmethod
-    def register(self, account): #3:
+    def register(self, account):
         pass
 
 class Deposit(Transaction):
-    @abstractmethod
     def register(self, account):
         if self.value <= 0:
             print('Enter only positive values.')
             return False
        
         else:
-            account.balance += self.value #4:
+            account.balance += self.value
             account.history.add_transaction(f'Deposit: R${self.value:.2f}.')
             return True
 
 class Withdraw(Transaction):
-    @abstractmethod
     def register(self, account):
         if self.value <= 0:
             print('Enter only positive values.')
@@ -79,6 +75,7 @@ class CurrentAccount(Account):
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
         super().__init__(client, number, agency, limit)
         self.limit_withdrawals = limit_withdrawals
+        
         self.number_withdrawals = 0
 
     def withdraw(self, value):
@@ -91,11 +88,11 @@ class CurrentAccount(Account):
             return False
         
         success = super().withdraw(value)
-        if succes:
+        if success:
             self.number_withdrawals += 1
         
         return success
-        
+
 # ==============================
 # 4) CLIENT CLASS
 # ==============================
@@ -128,7 +125,7 @@ def create_user(name, birth, cpf: str, address: str):
         
     if not cpf_exists:
         new_user = Client(name, birth, cpf, address)
-        user.append(new_user)
+        users.append(new_user)
         print(f'User {name} created successfully.')
 
 def create_current_account(cpf):
@@ -143,123 +140,92 @@ def create_current_account(cpf):
     if not user_found:
         print('User not found.')
         return
-
-    else:
-       ...
-
-
-
-
-
-
-
-    # Verifying StackOverflow.
-    # https://stackoverflow.com/questions/5022506/python-subclass-inheritance
-    # https://stackoverflow.com/questions/62589193/how-to-get-class-diagram-from-python-source-code
-
-
-
-########################
-users = list()
-def create_user(name, birth, cpf: str, address: str): #1:
-    cpf_exists = False
-    for i1 in users:
-        if i1['cpf'] == cpf:
-            cpf_exists = True
-            print('CPF already registered.')
-            return
     
-    if not cpf_exists:
-        new_user = {
-            'name': name,
-            'birth': birth,
-            'cpf': cpf,
-            'address': address
-        }
+    account_number = (len(accounts) + 1)
+    new_account = CurrentAccount(user_found, account_number)
+    user_found.add_account(new_account)
+    accounts.append(new_account)
 
-        users.append(new_user)
-        print(f'User {name} created successfully.')
-        # return new_user
+def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals):
+    if not accounts:
+        print('No accounts available to withdraw from.')
+        return balance, statement
 
-accounts = list()
-def create_current_account(cpf):
-    user_found = None
-    for i2 in users:
-        if i2['cpf'] == cpf:
-            user_found = i2
-            print(f'User found: {user_found}')
-            break
-    
-    if not user_found:
-        print('User not found.')
+    # We simulate withdrawing from the most recently created account
+    account = accounts[-1]
+
+    # Force the account's internal limit to match arguments (for demonstration).
+    # This aligns with the old procedural limit checks, but is not strictly required.
+    account.limit = limit
+    account.limit_withdrawals = limit_withdrawals
+    account.number_withdrawals = number_withdrawals
+
+    success = account.withdraw(withdrawal)
+    # Return updated balance from the account
+    new_balance = account.balance
+
+    # If success, append to statement
+    if success:
+        statement.append(f'Withdrawal: R${withdrawal:.2f}.')
+        print(f'Cash out: R${withdrawal:.2f}. Balance: {new_balance:.2f}.')
+
+    return new_balance, statement
+
+def deposit(balance, amount, statement, /):
+    if not accounts:
+        print('No accounts available to deposit into.')
+        return balance, statement
+
+    account = accounts[-1]
+    success = account.deposit(amount)
+    new_balance = account.balance
+
+    if success:
+        statement.append(f'Deposit of R${amount:.2f}.')
+        print(f'Deposit of R${amount:.2f}. Balance: {new_balance:.2f}.')
+
+    return new_balance, statement
+
+def bank_statement(balance, /, *, statement ):
+    if not accounts:
+        print('No accounts available.')
         return
 
-    account_number = (len(accounts) + 1)
-    account_new = {
-        'agency': '0001',
-        'account_number': account_number,
-        'user': user_found
-    }
-
-    accounts.append(account_new)
-    print('Account created successfully.')
-
-# Keyword only:
-def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals):
-    if withdrawal > limit:
-        print(f'It is not possible to withdraw ammounts above {limit}')
-    elif number_withdrawals >= limit_withdrawals:
-        print('You have reached your daily withdrawal limit.')
-    elif withdrawal > balance:
-        print(f'You do not have enough balance. Current: R${balance:.2f}.')
-    elif withdrawal > 0:
-        balance -= withdrawal
-        statement.append(f'Withdrawal: R${withdrawal:.2f}.')
-        number_withdrawals += 1
-        print(f'Cash out: R${withdrawal:.2f}. Balance: {balance:.2f}.')
-    else:
-        print('Enter only positive values.')
-    return balance, statement
-
-# Positional only:
-def deposit(balance, amount, statement, /):
-    if amount > 0:
-        balance += amount
-        statement.append(f'Deposit of R${amount:.2f}.')
-        print(f'Deposit of R${amount:.2f}. Balance: {balance:.2f}.')
-    else:
-        print('Enter only positive values.')
-    return balance, statement
-
-# Positional only and keyword only:
-def bank_statement(balance, /, *, statement ):
+    account = accounts[-1]
     print('EXTRACT: ')
     print('DEPOSIT: ')
-    if statement:
-        for i3 in statement:
+    if account.history.transactions:
+        for i3 in account.history.transactions:
             if i3.startswith('Deposit'):
                 print(i3)
     else:
         print('No deposit made.')
 
     print('WITHDRAWALS: ')
-    if statement:
-        for i4 in statement:
+    if account.history.transactions:
+        for i4 in account.history.transactions:
             if i4.startswith('Withdrawal'):
                 print(i4)
-    
     else:
         print('No withdrawals made.')
 
-    print(f'Balance: {balance:.2f}.')
+    print(f'Balance: {account.balance:.2f}.')
 
 def list_accounts():
+    if not accounts:
+        print('No accounts registered yet.')
+        return
+
     for i5 in accounts:
-        print(f'Agency: {i5["agency"]}', 
-              f'Number of account: {i5["account_number"]}',
-              f'User: {i5["user"]["name"]}'
+        print(
+            f'Agency: {i5.agency}',
+            f'Number of account: {i5.number}',
+            f'User: {i5.client.name}'
         )
 
+# ==============================
+# 6) MENU (UNCHANGED FLOW)
+# ==============================
 def menu():
     balance = 0
     statement = list()
@@ -281,17 +247,28 @@ def menu():
             )
 
             if options == 1:
-                cashout_amount = float(input('Enter the cash out amount: '))
-                balance, statement = withdraw(
-                                     balance = balance, 
-                                     withdrawal = cashout_amount, 
-                                     statement = statement, 
-                                     limit = withdrawal_limit, 
-                                     number_withdrawals = number_withdrawals, 
-                                     limit_withdrawals = withdrawal_limit_day
-                )
-                if cashout_amount > 0 and cashout_amount <= balance and number_withdrawals < withdrawal_limit_day:
-                    number_withdrawals += 1
+                if accounts:
+                    cashout_amount = float(input('Enter the cash out amount: '))
+                    old_withdrawals = number_withdrawals
+
+                    balance, statement = withdraw(
+                                        balance = balance, 
+                                        withdrawal = cashout_amount, 
+                                        statement = statement, 
+                                        limit = withdrawal_limit, 
+                                        number_withdrawals = number_withdrawals, 
+                                        limit_withdrawals = withdrawal_limit_day
+                    )
+
+                    if (
+                        cashout_amount > 0 
+                        and cashout_amount <= balance 
+                        and number_withdrawals < withdrawal_limit_day
+                    ):
+                        number_withdrawals += 1
+
+                else:
+                    print('No accounts available. Create one before making a withdrawal.')
 
             elif options == 2:
                 deposit_amount = float(input('Enter the deposit amount: '))

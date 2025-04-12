@@ -1,8 +1,3 @@
 # FILE: /log.txt
 
-#1: Importa as classes ABC e o decorador @abstractmethod do módulo abc.
-Objetivo: Permitir a criação de classes abstratas e métodos abstratos, para que as classes filhas sejam obrigadas a implementar certos métodos.
-
-#2:Define o método construtor __init__ que recebe um parâmetro value e o armazena na variável de instância self.value.
-#3: Define o método abstrato register que recebe um parâmetro account. Objetivo: Forçar que as classes filhas implementem este método para registrar a transação na conta.
-#4: Se o valor for válido, incrementa o saldo (balance) da conta com o valor do depósito.
+#1: Imports ABC (Abstract Base Class) and abstractmethod decorators to define abstract classes and methods. These are used for defining a class interface that must be implemented by any subclass.
