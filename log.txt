@@ -1,3 +1,6 @@
 # FILE: /log.txt
 
 #1: Imports ABC (Abstract Base Class) and abstractmethod decorators to define abstract classes and methods. These are used for defining a class interface that must be implemented by any subclass.
+
+#2: Constructor method to initialize the transaction with a value (e.g., deposit or withdrawal amount).
+#3: Abstract method register, which must be implemented by subclasses. This method will define how a transaction is recorded for an account.

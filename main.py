@@ -7,11 +7,11 @@ from datetime import date
 
 # Abstract Classes and Subclasses (Polymorphism)
 class Transaction(ABC):
-    def __init__(self, value: float):
-        self.value = value
+    def __init__(self, value: float): #2:
+        self.value = value #2:
 
-    @abstractmethod
-    def register(self, account):
+    @abstractmethod #3:
+    def register(self, account): #3:
         pass
 
 class Deposit(Transaction):
