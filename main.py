@@ -71,25 +71,25 @@ class Account:
         transaction = Withdraw(value) #13:
         return transaction.register(self) #13:
 
-class CurrentAccount(Account):
-    def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
-        super().__init__(client, number, agency, limit)
-        self.limit_withdrawals = limit_withdrawals
+class CurrentAccount(Account): #14:
+    def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3): #15:
+        super().__init__(client, number, agency, limit) #15:
+        self.limit_withdrawals = limit_withdrawals #15:
         
-        self.number_withdrawals = 0
+        self.number_withdrawals = 0 #15:
 
     def withdraw(self, value):
-        if self.number_withdrawals >= self.limit_withdrawals:
+        if self.number_withdrawals >= self.limit_withdrawals: #16:
             print('You have reached your daily withdrawal limit.')
             return False
 
-        if value > self.limit:
+        if value > self.limit: #17:
             print(f'It is not possible to withdraw amounts above {self.limit}.')
             return False
         
-        success = super().withdraw(value)
-        if success:
-            self.number_withdrawals += 1
+        success = super().withdraw(value) #18:
+        if success: #18:
+            self.number_withdrawals += 1 #18:
         
         return success
 
