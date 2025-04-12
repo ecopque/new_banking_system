@@ -32,4 +32,5 @@
 
 #22: A function to create a new user by checking if the CPF already exists.
 
-#23: 
+#23: A function to create a current account for a user based on the CPF.
+

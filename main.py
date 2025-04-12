@@ -124,16 +124,16 @@ def create_user(name, birth, cpf: str, address: str): #22:
         users.append(new_user)
         print(f'User {name} created successfully.')
 
-def create_current_account(cpf):
+def create_current_account(cpf): #23:
     user_found = None
 
-    for i2 in users:
+    for i2 in users: #23:
         if i2.cpf == cpf:
             user_found = i2
             print(f'User found: {user_found.name}')
             break
 
-    if not user_found:
+    if not user_found: #23:
         print('User not found.')
         return
     
