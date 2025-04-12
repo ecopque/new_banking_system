@@ -24,3 +24,7 @@
 #16: Checks if the account has reached its daily withdrawal limit. If yes, it prevents further withdrawals.
 #17: Checks if the withdrawal amount exceeds the account's limit. If yes, it prevents the withdrawal.
 #18: Calls the parent class withdraw method to perform the withdrawal, and if successful, increments the withdrawal count.
+
+#19: Defines the Client class to represent a customer. It holds client information (name, birth, CPF, address) and a list of accounts.
+#20: Adds an account to the client's list of accounts.
+

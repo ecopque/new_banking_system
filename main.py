@@ -91,9 +91,10 @@ class CurrentAccount(Account): #14:
         
         return success
 
+
 # Client Class:
-class Client:
-    def __init__(self, name, birth, cpf, address):
+class Client: #19:
+    def __init__(self, name, birth, cpf, address): #19:
         self.name = name
         self.birth = birth
         self.cpf = cpf
@@ -101,8 +102,8 @@ class Client:
 
         self.accounts = list()
 
-    def add_account(self, account):
-        self.accounts.append(account)
+    def add_account(self, account): #20:
+        self.accounts.append(account) #20:
     
 # ==============================
 # 5) GLOBAL LISTS (USERS/ACCOUNTS) & ORIGINAL FUNCTIONS
