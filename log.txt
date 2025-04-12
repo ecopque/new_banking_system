@@ -4,3 +4,6 @@
 
 #2: Constructor method to initialize the transaction with a value (e.g., deposit or withdrawal amount).
 #3: Abstract method register, which must be implemented by subclasses. This method will define how a transaction is recorded for an account.
+
+#4: register method for Deposit checks if the deposit amount is valid (greater than zero). If invalid, prints an error message and returns False.
+#5: If the deposit is valid, it updates the account's balance and adds the deposit to the transaction history.

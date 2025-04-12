@@ -15,14 +15,14 @@ class Transaction(ABC):
         pass
 
 class Deposit(Transaction):
-    def register(self, account):
-        if self.value <= 0:
+    def register(self, account): #4:
+        if self.value <= 0: #4:
             print('Enter only positive values.')
             return False
        
-        else:
-            account.balance += self.value
-            account.history.add_transaction(f'Deposit: R${self.value:.2f}.')
+        else: #5:
+            account.balance += self.value #5:
+            account.history.add_transaction(f'Deposit: R${self.value:.2f}.') #5:
             return True
 
 class Withdraw(Transaction):
