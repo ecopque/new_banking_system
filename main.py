@@ -1,11 +1,11 @@
 # FILE: /main.py
 
+# UML ARCHITECTURE AND CLASS HIERARCHY
+
 from abc import ABC, abstractmethod #1:
 from datetime import date
 
-# UML Architecture and Class Hierarchy
-
-# Abstract Classes and Subclasses (Polymorphism)
+# Abstract Classes and Subclasses (Polymorphism):
 class Transaction(ABC):
     def __init__(self, value: float): #2:
         self.value = value #2:
@@ -40,9 +40,8 @@ class Withdraw(Transaction):
             account.history.add_transaction(f'Withdrawal: R${self.value:.2f}.') #8:
             return True #8:
 
-# ==============================
-# 2) SUPPORT CLASSES
-# ==============================
+
+# Support Classes:
 class History: #9:
     def __init__(self): #9:
         self.transactions = list() #9:
@@ -50,9 +49,8 @@ class History: #9:
     def add_transaction(self, description: str): #10:
         self.transactions.append(description) #10:
 
-# ==============================
-# 3) ACCOUNT AND SUBCLASS (INHERITANCE)
-# ==============================
+
+# Account and Subclass (Inheritance):
 class Account:
     def __init__(self, client, number, agency='0001', limit=500): #11:
         self.client = client #11:
@@ -93,9 +91,7 @@ class CurrentAccount(Account): #14:
         
         return success
 
-# ==============================
-# 4) CLIENT CLASS
-# ==============================
+# Client Class:
 class Client:
     def __init__(self, name, birth, cpf, address):
         self.name = name
