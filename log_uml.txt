@@ -1,0 +1,14 @@
+# FILE: /log_uml.txt
+
+#A1:
+. Transaction (Interface). This is an abstract base class (or interface) for all transaction types. 
+. + __init__(value: float) – Constructor that stores the transaction value. 
+. + @register(account) – Abstract method that must be implemented by subclasses.
+
+#A2:
+. Deposit (inherits from Transaction). Represents a deposit transaction.
+. Implements register(account) to:
+    . Run validations (.verification)
+    . Increase balance (-> balance)
+    . Record in history (-> history)
+    . Call add_transaction() to store the event

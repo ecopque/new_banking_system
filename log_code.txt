@@ -1,4 +1,4 @@
-# FILE: /log.txt
+# FILE: /log_code.txt
 
 #1: Imports ABC (Abstract Base Class) and abstractmethod decorators to define abstract classes and methods. These are used for defining a class interface that must be implemented by any subclass.
 

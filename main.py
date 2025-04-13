@@ -141,7 +141,7 @@ def create_current_account(cpf): #23:
     new_account = CurrentAccount(user_found, account_number)
     user_found.add_account(new_account)
     accounts.append(new_account)
-
+#TODO
 def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals):
     if not accounts:
         print('No accounts available to withdraw from.')
