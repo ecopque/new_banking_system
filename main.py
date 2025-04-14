@@ -51,7 +51,7 @@ class History: #9:
 
 
 # Account and Subclass (Inheritance):
-class Account:
+class Account: #TODO
     def __init__(self, client, number, agency='0001', limit=500): #11:
         self.client = client #11:
         self.number = number #11:
@@ -125,24 +125,27 @@ def create_user(name, birth, cpf: str, address: str): #22:
         print(f'User {name} created successfully.')
 
 def create_current_account(cpf): #23:
-    user_found = None
+    user_found = None #24:
 
-    for i2 in users: #23:
+    for i2 in users:
         if i2.cpf == cpf:
             user_found = i2
             print(f'User found: {user_found.name}')
             break
 
-    if not user_found: #23:
+    if not user_found:
         print('User not found.')
         return
     
-    account_number = (len(accounts) + 1)
-    new_account = CurrentAccount(user_found, account_number)
+    account_number = (len(accounts) + 1) #25:
+
+    # [user_found = client] and [account_number = number] of CurrentAccount().
+    new_account = CurrentAccount(user_found, account_number) #26: 
+    
     user_found.add_account(new_account)
     accounts.append(new_account)
 #TODO
-def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals):
+def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #25:
     if not accounts:
         print('No accounts available to withdraw from.')
         return balance, statement
