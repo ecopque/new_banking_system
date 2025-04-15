@@ -51,7 +51,7 @@ class History: #9:
 
 
 # Account and Subclass (Inheritance):
-class Account: #TODO
+class Account:
     def __init__(self, client, number, agency='0001', limit=500): #11:
         self.client = client #11:
         self.number = number #11:
@@ -141,10 +141,10 @@ def create_current_account(cpf): #23:
 
     # [user_found = client] and [account_number = number] of CurrentAccount().
     new_account = CurrentAccount(user_found, account_number) #26: 
-    
     user_found.add_account(new_account)
     accounts.append(new_account)
-#TODO
+
+
 def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #25:
     if not accounts:
         print('No accounts available to withdraw from.')
