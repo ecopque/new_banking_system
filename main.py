@@ -145,30 +145,28 @@ def create_current_account(cpf): #23:
     accounts.append(new_account)
 
 
-def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #25:
-    if not accounts:
+def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27:
+    if not accounts: #28: #TODO: Obstructed flow. Check.
         print('No accounts available to withdraw from.')
-        return balance, statement
+        return balance, statement #28:
 
-    # We simulate withdrawing from the most recently created account
-    account = accounts[-1]
+    # We simulate withdrawing from the most recently created account.
+    account = accounts[-1] #29:
 
-    # Force the account's internal limit to match arguments (for demonstration).
-    # This aligns with the old procedural limit checks, but is not strictly required.
     account.limit = limit
     account.limit_withdrawals = limit_withdrawals
     account.number_withdrawals = number_withdrawals
 
-    success = account.withdraw(withdrawal)
-    # Return updated balance from the account
-    new_balance = account.balance
+    success = account.withdraw(withdrawal) #30: #boolean
 
-    # If success, append to statement
+    new_balance = account.balance #31:
+
     if success:
-        statement.append(f'Withdrawal: R${withdrawal:.2f}.')
+        statement.append(f'Withdrawal: R${withdrawal:.2f}.') #32:
         print(f'Cash out: R${withdrawal:.2f}. Balance: {new_balance:.2f}.')
 
     return new_balance, statement
+    
 
 def deposit(balance, amount, statement, /):
     if not accounts:
