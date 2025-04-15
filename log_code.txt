@@ -44,3 +44,7 @@
 #31: Return updated balance from the account
 #32: If the withdrawal was successful (if success:), the code appends a message to the statement list to log the withdrawal.
 #33: Mandatory named arguments.
+#34: /: Everything before the / must be passed positionally. This means you must pass balance by position, not by its name in the function call.
+#35: *: Everything after the * must be passed by name (i.e., as a keyword argument). So, statement must always be passed explicitly by its name when calling the function.
+#36: If the account has any transactions (account.history.transactions), the function checks if each transaction starts with the word 'Deposit' (indicating it's a deposit) and prints that transaction.
+#37: If the account has any transactions (account.history.transactions), the function checks if each transaction starts with the word 'Withdrawal' (indicating it's a deposit) and prints that transaction.

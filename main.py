@@ -183,7 +183,7 @@ def deposit(balance, amount, statement, /):
 
     return new_balance, statement
 
-def bank_statement(balance, /, *, statement ):
+def bank_statement(balance, /, *, statement ): #34: #35:
     if not accounts:
         print('No accounts available.')
         return
@@ -191,17 +191,17 @@ def bank_statement(balance, /, *, statement ):
     account = accounts[-1]
     print('EXTRACT: ')
     print('DEPOSIT: ')
-    if account.history.transactions:
-        for i3 in account.history.transactions:
-            if i3.startswith('Deposit'):
+    if account.history.transactions: #36:
+        for i3 in account.history.transactions: #36:
+            if i3.startswith('Deposit'): #36:
                 print(i3)
     else:
         print('No deposit made.')
 
     print('WITHDRAWALS: ')
-    if account.history.transactions:
-        for i4 in account.history.transactions:
-            if i4.startswith('Withdrawal'):
+    if account.history.transactions: #37:
+        for i4 in account.history.transactions: #37:
+            if i4.startswith('Withdrawal'): #37:
                 print(i4)
     else:
         print('No withdrawals made.')
