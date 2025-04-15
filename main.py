@@ -145,7 +145,7 @@ def create_current_account(cpf): #23:
     accounts.append(new_account)
 
 
-def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27:
+def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
     if not accounts: #28: #TODO: Obstructed flow. Check.
         print('No accounts available to withdraw from.')
         return balance, statement #28:
@@ -166,7 +166,7 @@ def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit
         print(f'Cash out: R${withdrawal:.2f}. Balance: {new_balance:.2f}.')
 
     return new_balance, statement
-    
+
 
 def deposit(balance, amount, statement, /):
     if not accounts:
