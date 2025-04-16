@@ -105,113 +105,113 @@ class D001_ClientCLS: #19:
     
 
 # Global Lists & Original Functions:
-users_VARg = list() #21:
-accounts_VARg = list() #21:
+users_VARG = list() #21:
+accounts_VARG = list() #21:
 
-def create_user(name, birth, cpf: str, address: str): #22:
-    cpf_exists = False
+def E001_create_userFCT(name, birth, cpf: str, address: str): #22:
+    E001_cpf_exists = False
     
-    for i1 in users_VARg: #22:
+    for i1 in users_VARG: #22:
         if i1.D001_cpf == cpf:
-            cpf_exists = True
+            E001_cpf_exists = True
             print('CPF already registered.')
             return
         
-    if not cpf_exists: #22:
-        new_user = D001_ClientCLS(name, birth, cpf, address)
-        users_VARg.append(new_user)
+    if not E001_cpf_exists: #22:
+        E001_new_userVARL = D001_ClientCLS(name, birth, cpf, address)
+        users_VARG.append(E001_new_userVARL)
         print(f'User {name} created successfully.')
 
-def create_current_account(cpf): #23:
-    user_found = None #24:
+def F001_create_current_accountFCT(cpf): #23:
+    F001_user_found = None #24:
 
-    for i2 in users_VARg:
+    for i2 in users_VARG:
         if i2.D001_cpf == cpf:
-            user_found = i2
-            print(f'User found: {user_found.D001_name}')
+            F001_user_found = i2
+            print(f'User found: {F001_user_found.D001_name}')
             break
 
-    if not user_found:
+    if not F001_user_found:
         print('User not found.')
         return
     
-    account_number = (len(accounts_VARg) + 1) #25:
+    F001_account_number = (len(accounts_VARG) + 1) #25:
 
     # [user_found = client] and [account_number = number] of CurrentAccount().
-    new_account = C002_CurrentAccountCLS(user_found, account_number) #26: 
-    user_found.D001_add_accountMTD(new_account)
-    accounts_VARg.append(new_account)
+    F001_new_account = C002_CurrentAccountCLS(F001_user_found, F001_account_number) #26: 
+    F001_user_found.D001_add_accountMTD(F001_new_account)
+    accounts_VARG.append(F001_new_account)
 
 
-def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
-    if not accounts_VARg: #28: #TODO: Obstructed flow. Check.
+def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
+    if not accounts_VARG: #28: #TODO: Obstructed flow. Check.
         print('No accounts available to withdraw from.')
         return balance, statement #28:
 
     # We simulate withdrawing from the most recently created account.
-    account = accounts_VARg[-1] #29:
+    G001_account = accounts_VARG[-1] #29:
 
-    account.C001_limit = limit
-    account.C002_limit_withdrawals = limit_withdrawals
-    account.C002_number_withdrawals = number_withdrawals
+    G001_account.C001_limit = limit
+    G001_account.C002_limit_withdrawals = limit_withdrawals
+    G001_account.C002_number_withdrawals = number_withdrawals
 
-    success = account.C002_withdrawMTD(withdrawal) #30: #boolean
+    G001_success = G001_account.C002_withdrawMTD(withdrawal) #30: #boolean
 
-    new_balance = account.balance #31:
+    G001_new_balance = G001_account.balance #31:
 
-    if success:
+    if G001_success:
         statement.append(f'Withdrawal: R${withdrawal:.2f}.') #32:
-        print(f'Cash out: R${withdrawal:.2f}. Balance: {new_balance:.2f}.')
+        print(f'Cash out: R${withdrawal:.2f}. Balance: {G001_new_balance:.2f}.')
 
-    return new_balance, statement
+    return G001_new_balance, statement
 
 
-def deposit(balance, amount, statement, /): #TODO
-    if not accounts_VARg:
+def H001_depositFCT(balance, amount, statement, /):
+    if not accounts_VARG:
         print('No accounts available to deposit into.')
         return balance, statement
 
-    account = accounts_VARg[-1]
-    success = account.C001_depositMTD(amount)
-    new_balance = account.C001_balance
+    H001_account = accounts_VARG[-1]
+    H001_success = H001_account.C001_depositMTD(amount)
+    H001_new_balance = H001_account.C001_balance
 
-    if success:
+    if H001_success:
         statement.append(f'Deposit of R${amount:.2f}.')
-        print(f'Deposit of R${amount:.2f}. Balance: {new_balance:.2f}.')
+        print(f'Deposit of R${amount:.2f}. Balance: {H001_new_balance:.2f}.')
 
-    return new_balance, statement
+    return H001_new_balance, statement
 
-def bank_statement(balance, /, *, statement ): #34: #35:
-    if not accounts_VARg:
+def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
+    if not accounts_VARG:
         print('No accounts available.')
         return
 
-    account = accounts_VARg[-1]
+    I001_account = accounts_VARG[-1]
     print('EXTRACT: ')
     print('DEPOSIT: ')
-    if account.C001_history.B001_transactions: #36:
-        for i3 in account.C001_history.B001_transactions: #36:
+    if I001_account.C001_history.B001_transactions: #36:
+        for i3 in I001_account.C001_history.B001_transactions: #36:
             if i3.startswith('Deposit'): #36:
                 print(i3)
     else:
         print('No deposit made.')
 
     print('WITHDRAWALS: ')
-    if account.C001_history.B001_transactions: #37:
-        for i4 in account.C001_history.B001_transactions: #37:
+    if I001_account.C001_history.B001_transactions: #37:
+        for i4 in I001_account.C001_history.B001_transactions: #37:
             if i4.startswith('Withdrawal'): #37:
                 print(i4)
     else:
         print('No withdrawals made.')
 
-    print(f'Balance: {account.C001_balance:.2f}.')
+    print(f'Balance: {I001_account.C001_balance:.2f}.')
 
-def list_accounts():
-    if not accounts_VARg:
+def J001_list_accountsFCT():
+    if not accounts_VARG:
         print('No accounts registered yet.')
         return
 
-    for i5 in accounts_VARg:
+    for i5 in accounts_VARG:
         print(
             f'Agency: {i5.C001_agency}',
             f'Number of account: {i5.C001_number}',
@@ -219,16 +219,16 @@ def list_accounts():
         )
 
 # Menu:
-def menu():
-    balance = 0
-    statement = list()
-    withdrawal_limit = 500
-    withdrawal_limit_day = 3
-    number_withdrawals = 0
+def K001_menuFCT():
+    K001_balance = 0
+    K001_statement = list()
+    K001_withdrawal_limit = 500
+    K001_withdrawal_limit_day = 3
+    K001_number_withdrawals = 0
     
     while True:
         try:
-            options = int(input('Choose one of the options:\n'
+            K001_options = int(input('Choose one of the options:\n'
                                     '[1] - Cash out\n'
                                     '[2] - Deposit\n'
                                     '[3] - View extract\n'
@@ -239,57 +239,57 @@ def menu():
                                     '[8] - Info: ')
             )
 
-            if options == 1:
-                if accounts_VARg:
-                    cashout_amount = float(input('Enter the cash out amount: '))
-                    old_withdrawals = number_withdrawals
+            if K001_options == 1:
+                if accounts_VARG:
+                    K001_cashout_amount = float(input('Enter the cash out amount: '))
+                    K001_old_withdrawals = K001_number_withdrawals
 
-                    balance, statement = withdraw(
-                                        balance = balance, 
-                                        withdrawal = cashout_amount, 
-                                        statement = statement, 
-                                        limit = withdrawal_limit, 
-                                        number_withdrawals = number_withdrawals, 
-                                        limit_withdrawals = withdrawal_limit_day
+                    K001_balance, K001_statement = G001_withdrawFCT(
+                                        balance = K001_balance, 
+                                        withdrawal = K001_cashout_amount, 
+                                        statement = K001_statement, 
+                                        limit = K001_withdrawal_limit, 
+                                        number_withdrawals = K001_number_withdrawals, 
+                                        limit_withdrawals = K001_withdrawal_limit_day
                     )
 
                     if (
-                        cashout_amount > 0 
-                        and cashout_amount <= balance 
-                        and number_withdrawals < withdrawal_limit_day
+                        K001_cashout_amount > 0 
+                        and K001_cashout_amount <= K001_balance 
+                        and K001_number_withdrawals < K001_withdrawal_limit_day
                     ):
-                        number_withdrawals += 1
+                        K001_number_withdrawals += 1
 
                 else:
                     print('No accounts available. Create one before making a withdrawal.')
 
-            elif options == 2:
-                deposit_amount = float(input('Enter the deposit amount: '))
-                balance, statement = deposit(balance, deposit_amount, statement)
+            elif K001_options == 2:
+                K001_deposit_amount = float(input('Enter the deposit amount: '))
+                K001_balance, K001_statement = H001_depositFCT(K001_balance, K001_deposit_amount, K001_statement)
 
-            elif options == 3:
-                bank_statement(balance, statement=statement)
+            elif K001_options == 3:
+                I001_bank_statementFCT(K001_balance, statement=K001_statement)
 
-            elif options == 4:
-                name = str(input('Enter your name: '))
-                birth = str(input('Enter your birth date (DD/MM/YYY): '))
-                cpf = str(input('Enter your CPF (numbers only): '))
-                address = str(input('Enter you address (logradouro, nro - bairro - city/state: )'))
+            elif K001_options == 4:
+                K001_name = str(input('Enter your name: '))
+                K001_birth = str(input('Enter your birth date (DD/MM/YYY): '))
+                K001_cpf = str(input('Enter your CPF (numbers only): '))
+                K001_address = str(input('Enter you address (logradouro, nro - bairro - city/state: )'))
 
-                create_user(name, birth, cpf, address)
+                E001_create_userFCT(K001_name, K001_birth, K001_cpf, K001_address)
 
-            elif options == 5:
-                cpf = str(input('Enter your CPF (numbers only): '))
-                create_current_account(cpf)
+            elif K001_options == 5:
+                K001_cpf = str(input('Enter your CPF (numbers only): '))
+                F001_create_current_accountFCT(K001_cpf)
 
-            elif options == 6:
-                list_accounts()
+            elif K001_options == 6:
+                J001_list_accountsFCT()
             
-            elif options == 7:
+            elif K001_options == 7:
                 print('Thank you for using our system. Goodbye!')
                 break
 
-            elif options == 8:
+            elif K001_options == 8:
                 print('### DEVELOPER DATA ###')
                 print('Developed by: Edson Copque\n'
                     'Site: https://linktr.ee/edsoncopque\n'
@@ -304,7 +304,7 @@ def menu():
             print(f'Please enter a valid input.')
 
 if __name__ == '__main__':
-    menu()
+    K001_menuFCT()
 
     '''
     . Developer: Edson Copque
