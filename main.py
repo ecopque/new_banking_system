@@ -168,7 +168,7 @@ def withdraw(*, balance, withdrawal, statement, limit, number_withdrawals, limit
     return new_balance, statement
 
 
-def deposit(balance, amount, statement, /):
+def deposit(balance, amount, statement, /): #TODO
     if not accounts:
         print('No accounts available to deposit into.')
         return balance, statement
@@ -220,9 +220,7 @@ def list_accounts():
             f'User: {i5.client.name}'
         )
 
-# ==============================
-# 6) MENU (UNCHANGED FLOW)
-# ==============================
+# Menu:
 def menu():
     balance = 0
     statement = list()
@@ -240,7 +238,7 @@ def menu():
                                     '[5] - Create current account\n'
                                     '[6] - List accounts\n'
                                     '[7] - Exit\n'
-                                    '[8] - Info): ')
+                                    '[8] - Info: ')
             )
 
             if options == 1:
