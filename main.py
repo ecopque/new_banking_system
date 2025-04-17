@@ -156,7 +156,7 @@ def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawal
 
     G001_success = G001_account.C002_withdrawMTD(withdrawal) #30: #boolean
 
-    G001_new_balance = G001_account.balance #31:
+    G001_new_balance = G001_account.C001_balance #31:
 
     if G001_success:
         statement.append(f'Withdrawal: R${withdrawal:.2f}.') #32:
@@ -222,8 +222,8 @@ def K001_menuFCT():
     K001_balance = 0
     K001_statement = list()
     K001_withdrawal_limit = 500
-    K001_withdrawal_limit_day = 3
     K001_number_withdrawals = 0
+    K001_withdrawal_limit_day = 3
     
     while True:
         try:
