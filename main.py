@@ -142,7 +142,6 @@ def F001_create_current_accountFCT(cpf): #23:
     F001_user_found.D001_add_accountMTD(F001_new_account)
     accounts_VARG.append(F001_new_account)
 
-
 def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
     if not accounts_VARG: #28: #TODO: Obstructed flow. Check.
         print('No accounts available to withdraw from.')
