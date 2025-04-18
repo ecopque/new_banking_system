@@ -291,9 +291,9 @@ def K001_menuFCT():
             elif K001_options == 8:
                 print('### DEVELOPER DATA ###')
                 print('Developed by: Edson Copque\n'
-                    'Site: https://linktr.ee/edsoncopque\n'
+                    'Hub: https://linktr.ee/edsoncopque\n'
                     'GitHub: https://github.com/ecopque\n'
-                    'Repo: https://github.com/ecopque/new_banking_system\n'
+                    'Repository: https://github.com/ecopque/new_banking_system\n'
                     'Signal Messenger: ecop.01\n')
 
             else:
@@ -304,6 +304,7 @@ def K001_menuFCT():
 
 if __name__ == '__main__':
     K001_menuFCT()
+#TODO Add property and setter?
 
     '''
     . Developer: Edson Copque
