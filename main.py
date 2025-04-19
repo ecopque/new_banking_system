@@ -221,9 +221,9 @@ def J001_list_accountsFCT():
 def K001_menuFCT():
     K001_balance = 0
     K001_statement = list()
-    K001_withdrawal_limit = 500
+    K001_value_limit = 500
     K001_number_withdrawals = 0
-    K001_withdrawal_limit_day = 3
+    K001_limit_withdrawals = 3
     
     while True:
         try:
@@ -247,15 +247,15 @@ def K001_menuFCT():
                                         balance = K001_balance, 
                                         withdrawal = K001_cashout_amount, 
                                         statement = K001_statement, 
-                                        limit = K001_withdrawal_limit, 
+                                        limit = K001_value_limit, 
                                         number_withdrawals = K001_number_withdrawals, 
-                                        limit_withdrawals = K001_withdrawal_limit_day
+                                        limit_withdrawals = K001_limit_withdrawals
                     )
 
                     if (
                         K001_cashout_amount > 0 
                         and K001_cashout_amount <= K001_balance 
-                        and K001_number_withdrawals < K001_withdrawal_limit_day
+                        and K001_number_withdrawals < K001_limit_withdrawals
                     ):
                         K001_number_withdrawals += 1
 
