@@ -61,7 +61,7 @@ class C001_AccountCLS:
 
     def C001_depositMTD(self, value): #12:
         C001_transaction = A002_DepositCLS(value) #12:
-        return C001_transaction.A001_registerMTD(self) #12:
+        return C001_transaction.A001_registerMTD(self) #12: # Edsonnnnnnnnnnnnnnnn
 
     def C001_withdrawMTD(self, value): #13:
         C001_transaction = A003_WithdrawCLS(value) #13:
@@ -166,7 +166,7 @@ def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawal
 
 
 def H001_depositFCT(balance, amount, statement, /):
-    if not accounts_VARG:
+    if not accounts_VARG: #TODO: Obstructed flow. Check.
         print('No accounts available to deposit into.')
         return balance, statement
 
