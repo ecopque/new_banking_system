@@ -89,6 +89,20 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
         
         return C002_success
 
+class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS):
+    def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
+        super().__init__(client, number, agency, limit, limit_withdrawals)
+
+    @property
+    def C003_balanceMTD(self):
+        return self._C003_balance
+    
+    @C003_balanceMTD.setter
+    def C003_balanceMTD(self, value):
+        if value < 0:
+            raise ValueError('Balance cannot be negative.')
+        self._C003_balance = value
+
 
 # Client Class:
 class D001_ClientCLS: #19:
@@ -102,7 +116,7 @@ class D001_ClientCLS: #19:
 
     def D001_add_accountMTD(self, account): #20:
         self.D001_accounts.append(account) #20:
-            
+
 
 # Global Lists & Original Functions:
 users_VARG = list() #21:
