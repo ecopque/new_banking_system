@@ -281,7 +281,8 @@ def K001_menuFCT():
                                     '[5] - Create current account\n'
                                     '[6] - List accounts\n'
                                     '[7] - Exit\n'
-                                    '[8] - Info: ')
+                                    '[8] - Info\n'
+                                    '[9] - Create DECORATED current account: ')
             )
 
             if K001_options == 1:
@@ -341,6 +342,10 @@ def K001_menuFCT():
                     'GitHub: https://github.com/ecopque\n'
                     'Repository: https://github.com/ecopque/new_banking_system\n'
                     'Signal Messenger: ecop.01\n')
+            
+            elif K001_options == 9:
+                K001_cpf = input('Enter your CPF (numbers only): ')
+                F002_create_decorated_caFCT(K001_cpf)
 
             else:
                 print('Please enter a valid number.')
