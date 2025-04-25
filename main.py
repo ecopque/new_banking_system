@@ -102,15 +102,7 @@ class D001_ClientCLS: #19:
 
     def D001_add_accountMTD(self, account): #20:
         self.D001_accounts.append(account) #20:
-
-
-# Property Manager: #TODO
-class E001_PropertyManagerCLS:
-    
-    @staticmethod
-    def E001_apply_account():
-
-    
+            
 
 # Global Lists & Original Functions:
 users_VARG = list() #21:
