@@ -175,17 +175,17 @@ def F002_create_decorated_caFCT(cpf):
             print(f'User found: {it6.D001_name}.')
             break
 
-        if not F002_user_found:
-            print('User not found.')
-            return
-        
-        F002_account_number = (len(accounts_VARG) + 1)
+    if not F002_user_found:
+        print('User not found.')
+        return
+    
+    F002_account_number = (len(accounts_VARG) + 1)
 
-        F002_new_account = C003_DecoratedCAAccountCLS(F002_user_found, F002_account_number)
-        F002_user_found.D001_add_accountMTD(F002_new_account)
-        accounts_VARG.append(F002_new_account)
-        
-        print(f'Decorated account #{F002_account_number} created for {F002_user_found.D001_name}.')
+    F002_new_account = C003_DecoratedCAAccountCLS(F002_user_found, F002_account_number)
+    F002_user_found.D001_add_accountMTD(F002_new_account)
+    accounts_VARG.append(F002_new_account)
+    
+    print(f'Decorated account #{F002_account_number} created for {F002_user_found.D001_name}.')
 
 
 def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
