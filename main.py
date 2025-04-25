@@ -89,7 +89,7 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
         
         return C002_success
 
-class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS):
+class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #TODO
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
         super().__init__(client, number, agency, limit, limit_withdrawals)
 
@@ -102,6 +102,16 @@ class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS):
         if value < 0:
             raise ValueError('Balance cannot be negative.')
         self._C003_balance = value
+
+    @property
+    def C003_limitMTD(self):
+        return self._C003_limit
+
+    @C003_limitMTD.setter
+    def C003_limitMTD(self, value):
+        if value < 0:
+            raise ValueError('Limit cannot be negative.')
+        self._C003_limit = value
 
 
 # Client Class:
@@ -125,8 +135,8 @@ accounts_VARG = list() #21:
 def E001_create_userFCT(name, birth, cpf: str, address: str): #22:
     E001_cpf_exists = False
     
-    for i1 in users_VARG: #22:
-        if i1.D001_cpf == cpf:
+    for it1 in users_VARG: #22:
+        if it1.D001_cpf == cpf:
             E001_cpf_exists = True
             print('CPF already registered.')
             return
@@ -139,9 +149,9 @@ def E001_create_userFCT(name, birth, cpf: str, address: str): #22:
 def F001_create_current_accountFCT(cpf): #23:
     F001_user_found = None #24:
 
-    for i2 in users_VARG:
-        if i2.D001_cpf == cpf:
-            F001_user_found = i2
+    for it2 in users_VARG:
+        if it2.D001_cpf == cpf:
+            F001_user_found = it2
             print(f'User found: {F001_user_found.D001_name}')
             break
 
@@ -155,6 +165,28 @@ def F001_create_current_accountFCT(cpf): #23:
     F001_new_account = C002_CurrentAccountCLS(F001_user_found, F001_account_number) #26: 
     F001_user_found.D001_add_accountMTD(F001_new_account)
     accounts_VARG.append(F001_new_account)
+
+def F002_create_decorated_caFCT(cpf):
+    F002_user_found = None
+
+    for it6 in users_VARG:
+        if it6.D001_cpf == cpf:
+            F002_user_found = it6
+            print(f'User found: {it6.D001_name}.')
+            break
+
+        if not F002_user_found:
+            print('User not found.')
+            return
+        
+        F002_account_number = (len(accounts_VARG) + 1)
+
+        F002_new_account = C003_DecoratedCAAccountCLS(F002_user_found, F002_account_number)
+        F002_user_found.D001_add_accountMTD(F002_new_account)
+        accounts_VARG.append(F002_new_account)
+        
+        print(f'Decorated account #{F002_account_number} created for {F002_user_found.D001_name}.')
+
 
 def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
     if not accounts_VARG: #28: #TODO: Obstructed flow. Check.
@@ -203,17 +235,17 @@ def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
     print('EXTRACT: ')
     print('DEPOSIT: ')
     if I001_account.C001_history.B001_transactions: #36:
-        for i3 in I001_account.C001_history.B001_transactions: #36:
-            if i3.startswith('Deposit'): #36:
-                print(i3)
+        for it3 in I001_account.C001_history.B001_transactions: #36:
+            if it3.startswith('Deposit'): #36:
+                print(it3)
     else:
         print('No deposit made.')
 
     print('WITHDRAWALS: ')
     if I001_account.C001_history.B001_transactions: #37:
-        for i4 in I001_account.C001_history.B001_transactions: #37:
-            if i4.startswith('Withdrawal'): #37:
-                print(i4)
+        for it4 in I001_account.C001_history.B001_transactions: #37:
+            if it4.startswith('Withdrawal'): #37:
+                print(it4)
     else:
         print('No withdrawals made.')
 
@@ -224,11 +256,11 @@ def J001_list_accountsFCT():
         print('No accounts registered yet.')
         return
 
-    for i5 in accounts_VARG:
+    for it5 in accounts_VARG:
         print(
-            f'Agency: {i5.C001_agency}',
-            f'Number of account: {i5.C001_number}',
-            f'User: {i5.C001_client.name}'
+            f'Agency: {it5.C001_agency}',
+            f'Number of account: {it5.C001_number}',
+            f'User: {it5.C001_client.name}'
         )
 
 # Menu:
@@ -318,11 +350,3 @@ def K001_menuFCT():
 
 if __name__ == '__main__':
     K001_menuFCT()
-#TODO Add property and setter?
-
-    '''
-    . Developer: Edson Copque
-    . Website: https://linktr.ee/edsoncopque
-    . GitHub: https://github.com/ecopque
-    . Signal Messenger: ecop.01
-    '''
