@@ -260,7 +260,7 @@ def J001_list_accountsFCT():
         print(
             f'Agency: {it5.C001_agency}',
             f'Number of account: {it5.C001_number}',
-            f'User: {it5.C001_client.name}'
+            f'User: {it5.C001_client.D001_name}'
         )
 
 # Menu:
