@@ -89,18 +89,18 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
         
         return C002_success
 
-class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #TODO
+class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #38:
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
         super().__init__(client, number, agency, limit, limit_withdrawals)
 
-    @property
-    def C003_balanceMTD(self):
-        return self._C003_balance
+    @property #39: #40:
+    def C003_balanceMTD(self): #39:
+        return self._C003_balance #39:
     
-    @C003_balanceMTD.setter
-    def C003_balanceMTD(self, value):
-        if value < 0:
-            raise ValueError('Balance cannot be negative.')
+    @C003_balanceMTD.setter #41:
+    def C003_balanceMTD(self, value): #41:
+        if value < 0: #42:
+            raise ValueError('Balance cannot be negative.') #42:
         self._C003_balance = value
 
     @property
@@ -166,7 +166,7 @@ def F001_create_current_accountFCT(cpf): #23:
     F001_user_found.D001_add_accountMTD(F001_new_account)
     accounts_VARG.append(F001_new_account)
 
-def F002_create_decorated_caFCT(cpf):
+def F002_create_decorated_caFCT(cpf): #43:
     F002_user_found = None
 
     for it6 in users_VARG:

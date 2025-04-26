@@ -48,3 +48,12 @@
 #35: *: Everything after the * must be passed by name (i.e., as a keyword argument). So, statement must always be passed explicitly by its name when calling the function.
 #36: If the account has any transactions (account.history.transactions), the function checks if each transaction starts with the word 'Deposit' (indicating it's a deposit) and prints that transaction.
 #37: If the account has any transactions (account.history.transactions), the function checks if each transaction starts with the word 'Withdrawal' (indicating it's a deposit) and prints that transaction.
+
+#38: This class is a decorated version of a Current Account — maybe with additional features or different behavior.
+#39: @property makes this method accessible like an attribute. You don’t call it like a function — just object.C003_balanceMTD.
+#40: This is the getter. It retrieves the value of the internal variable _C003_balance.
+#41: This is the setter — it lets you assign a new value: object.C003_balanceMTD = 100.
+#42: It adds validation: it raises an error if the balance is negative.
+
+#43: This is a function that creates a new decorated account for a user based on their CPF.
+#44: 
