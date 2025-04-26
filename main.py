@@ -227,7 +227,7 @@ def H001_depositFCT(balance, amount, statement, /):
     return H001_new_balance, statement
 
 def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
-    if not accounts_VARG:
+    if not accounts_VARG: #TODO Obstructed flow? Check.
         print('No accounts available.')
         return
 
