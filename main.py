@@ -64,7 +64,7 @@ class C001_AccountCLS:
         return C001_transaction.A001_registerMTD(self) #12: # Edsonnnnnnnnnnnnnnnn
 
     def C001_withdrawMTD(self, value): #13:
-        C001_transaction = A003_WithdrawCLS(value) #13:
+        C001_transaction = A003_WithdrawCLS(value) #13: #(1.6.3)**
         return C001_transaction.A001_registerMTD(self) #13:
 
 class C002_CurrentAccountCLS(C001_AccountCLS): #14:
@@ -79,11 +79,11 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
             print('You have reached your daily withdrawal limit.')
             return False
 
-        if value > self.C001_limit: #17:
+        if value > self.C001_limit: #17: #(1.6.1)
             print(f'It is not possible to withdraw amounts above {self.C001_limit}.')
             return False
         
-        C002_success = super().C001_withdrawMTD(value) #18:
+        C002_success = super().C001_withdrawMTD(value) #18: #(1.6.2)
         if C002_success: #18:
             self.C002_number_withdrawals += 1 #18:
         
@@ -189,18 +189,18 @@ def F002_create_decorated_caFCT(cpf): #43:
 
 
 def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
-    if not accounts_VARG: #28: #TODO: Obstructed flow. Check.
+    if not accounts_VARG: #28: #(1.2)
         print('No accounts available to withdraw from.')
         return balance, statement #28:
 
     # We simulate withdrawing from the most recently created account.
     G001_account = accounts_VARG[-1] #29:
 
-    G001_account.C001_limit = limit
-    G001_account.C002_limit_withdrawals = limit_withdrawals
-    G001_account.C002_number_withdrawals = number_withdrawals
+    G001_account.C001_limit = limit #(1.3)
+    G001_account.C002_limit_withdrawals = limit_withdrawals #(1.4)
+    G001_account.C002_number_withdrawals = number_withdrawals #(1.5)
 
-    G001_success = G001_account.C002_withdrawMTD(withdrawal) #30: #boolean
+    G001_success = G001_account.C002_withdrawMTD(withdrawal) #30: #(1.6) #boolean
 
     G001_new_balance = G001_account.C001_balance #31:
 
@@ -290,7 +290,7 @@ def K001_menuFCT():
                     K001_cashout_amount = float(input('Enter the cash out amount: '))
                     K001_old_withdrawals = K001_number_withdrawals
 
-                    K001_balance, K001_statement = G001_withdrawFCT(
+                    K001_balance, K001_statement = G001_withdrawFCT( # (1.1)
                                         balance = K001_balance, 
                                         withdrawal = K001_cashout_amount, 
                                         statement = K001_statement, 
