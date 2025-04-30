@@ -61,11 +61,11 @@ class C001_AccountCLS:
 
     def C001_depositMTD(self, value): #12:
         C001_transaction = A002_DepositCLS(value) #12:
-        return C001_transaction.A001_registerMTD(self) #12: # Edsonnnnnnnnnnnnnnnn
+        return C001_transaction.A001_registerMTD(self) #12:
 
     def C001_withdrawMTD(self, value): #13:
-        C001_transaction = A003_WithdrawCLS(value) #13: #(1.6.3)**
-        return C001_transaction.A001_registerMTD(self) #13:
+        C001_transaction = A003_WithdrawCLS(value) #13: #(1.6.3)
+        return C001_transaction.A001_registerMTD(self) #13: #(1.6.3.1)
 
 class C002_CurrentAccountCLS(C001_AccountCLS): #14:
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3): #15:
