@@ -64,7 +64,7 @@ class C001_AccountCLS:
         return C001_transaction.A001_registerMTD(self) #12:
 
     def C001_withdrawMTD(self, value): #13:
-        C001_transaction = A003_WithdrawCLS(value) #13: #(1.6.3)
+        C001_transaction = A003_WithdrawCLS(value) #13:
         return C001_transaction.A001_registerMTD(self) #13: #(1.6.3.1)
 
 class C002_CurrentAccountCLS(C001_AccountCLS): #14:
