@@ -82,7 +82,7 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
             return False
         
         else:
-            C002_success = super().C001_withdrawMTD(value) #18: #(1.6.2)
+            C002_success = super().C001_withdrawMTD(value) #18:
             if C002_success: #18:
                 self.C002_number_withdrawals += 1 #18:
             
@@ -112,7 +112,9 @@ class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #38:
     def C003_limitMTD(self, value):
         if value < 0:
             raise ValueError('Limit cannot be negative.')
-        self._C003_limit = value
+        
+        else:
+            self._C003_limit = value
 
 
 # Client Class:
