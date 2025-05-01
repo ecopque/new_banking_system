@@ -38,7 +38,6 @@ class A003_WithdrawCLS(A001_TransactionCLS):
             account.C001_history.B001_add_transactionMTD(f'Withdrawal: R${self.A001_value:.2f}.') #8:
             return True #8:
 
-
 # Support Classes:
 class B001_HistoryCLS: #9:
     def __init__(self): #9:
@@ -46,7 +45,6 @@ class B001_HistoryCLS: #9:
 
     def B001_add_transactionMTD(self, description: str): #10:
         self.B001_transactions.append(description) #10:
-
 
 # Account and Subclass (Inheritance):
 class C001_AccountCLS:
@@ -83,11 +81,12 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
             print(f'It is not possible to withdraw amounts above {self.C001_limit}.')
             return False
         
-        C002_success = super().C001_withdrawMTD(value) #18: #(1.6.2)
-        if C002_success: #18:
-            self.C002_number_withdrawals += 1 #18:
-        
-        return C002_success
+        else:
+            C002_success = super().C001_withdrawMTD(value) #18: #(1.6.2)
+            if C002_success: #18:
+                self.C002_number_withdrawals += 1 #18:
+            
+            return C002_success # True or False
 
 class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #38:
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
@@ -101,7 +100,9 @@ class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #38:
     def C003_balanceMTD(self, value): #41:
         if value < 0: #42:
             raise ValueError('Balance cannot be negative.') #42:
-        self._C003_balance = value
+        
+        else:
+            self._C003_balance = value
 
     @property
     def C003_limitMTD(self):
