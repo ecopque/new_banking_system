@@ -199,7 +199,7 @@ def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawal
     # We simulate withdrawing from the most recently created account.
     G001_account = accounts_VARG[-1] #29:
 
-    G001_account.C001_limit = limit #(1.3)
+    G001_account.C001_limit = limit
     G001_account.C002_limit_withdrawals = limit_withdrawals #(1.4)
     G001_account.C002_number_withdrawals = number_withdrawals #(1.5)
 
