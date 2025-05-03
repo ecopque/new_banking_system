@@ -56,4 +56,5 @@
 #42: It adds validation: it raises an error if the balance is negative.
 
 #43: This is a function that creates a new decorated account for a user based on their CPF.
-#44: 
+
+finished
