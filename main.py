@@ -292,7 +292,7 @@ def K001_menuFCT():
                     K001_cashout_amount = float(input('Enter the cash out amount: '))
                     K001_old_withdrawals = K001_number_withdrawals
 
-                    K001_balance, K001_statement = G001_withdrawFCT( # (1.1)
+                    K001_balance, K001_statement = G001_withdrawFCT(
                                         balance = K001_balance, 
                                         withdrawal = K001_cashout_amount, 
                                         statement = K001_statement, 
