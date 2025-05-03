@@ -62,7 +62,7 @@ This project is terminal-based and meant to simulate the flow of banking operati
 ## Images
 This section provides visual examples of the program in action. Is reserved for system diagrams and execution screenshots.
 
-### UML Diagram
+### UML Diagram:
 ![Diagram-UML](https://github.com/ecopque/new_banking_system/blob/main/prints/Code_-_Python_-_New_Nanking_System.png)
 
 ---
