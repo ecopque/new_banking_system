@@ -1,7 +1,7 @@
 # FILE: /main.py
 
 from abc import ABC, abstractmethod #1:
-from datetime import date
+# from datetime import date
 
 # Abstract Classes and Subclasses (Polymorphism):
 class A001_TransactionCLS(ABC):

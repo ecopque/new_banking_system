@@ -61,7 +61,8 @@ This project is terminal-based and meant to simulate the flow of banking operati
 ---
 
 ## Images
-This section provides visual examples of the program in action. Is reserved for system diagrams and execution screenshots. 
+This section provides visual examples of the program in action. Is reserved for system diagrams and execution screenshots.
+![Diagram-UML](https://github.com/ecopque/news_analysis_system_with_ai/blob/main/prints/Screenshot%20from%202025-04-02%2015-13-02.png)
 
 ---
 
