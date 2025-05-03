@@ -43,10 +43,10 @@ This Python-based bank system was designed to explore and apply advanced object-
 ---
 
 ## Technologies Used
-- **Python 3.11.2**: Core language  
-- **abc**: Abstract Base Classes for enforcing OOP design  
-- **Built-in terminal print/logic**: For testing and visualization during development  
-- **POO principles**: Applied extensively throughout the project  
+- **Python 3.11.2**: Core language.
+- **abc**: Abstract Base Classes for enforcing OOP design.
+- **Built-in terminal print/logic**: For testing and visualization during development.
+- **POO principles**: Applied extensively throughout the project.
 
 ---
 
