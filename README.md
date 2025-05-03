@@ -1,11 +1,9 @@
 # New Banking System - Object-Oriented Programming
-
 This project is a fully object-oriented banking system developed in Python. The goal is to simulate real-world banking operations using OOP principles such as abstraction, encapsulation, inheritance (superclasses and subclasses), and polymorphism. The system is capable of managing clients, accounts (including savings and checking), performing transactions, tracking operations, and enforcing business rules like withdrawal limits and account history.
 
 ---
 
 ## Table of Contents
-
 - [Project Overview](#project-overview)  
 - [Technologies Used](#technologies-used)  
 - [Installation](#installation)  
@@ -18,7 +16,6 @@ This project is a fully object-oriented banking system developed in Python. The 
 ---
 
 ## Project Overview
-
 This Python-based bank system was designed to explore and apply advanced object-oriented programming (OOP) concepts in practice. The system uses:
 
 - **Superclasses and Concrete Subclasses:** A `Client` superclass with concrete subclasses such as `Individual` (`PessoaFisica`) and account types like `CurrentAccount` (`ContaCorrente`) and `SavingsAccount` (`ContaPoupanca`).
@@ -27,6 +24,8 @@ This Python-based bank system was designed to explore and apply advanced object-
 - **Encapsulation:** Attributes are managed with proper access control.
 - **Composition:** A `Client` can have one or more accounts; `Account` maintains a list of `Transaction` objects.
 - **Business Logic Enforcement:** Includes rules like daily withdrawal limits, minimum balance checks, and proper validation of CPF and account existence.
+
+---
 
 ### Key Features
 
@@ -59,8 +58,12 @@ This project is terminal-based and meant to simulate the flow of banking operati
 - Customize and extend logic for more features like transfers or fees.
 - The current structure supports modular extension.
 
+---
+
 ## Images
 This section provides visual examples of the program in action. Is reserved for system diagrams and execution screenshots. 
+
+---
 
 ## Developer Guide
 If you have any questions about the code, I have documented the most important lines with explanations on their functionality in the **log.txt** file. This file provides a **step-by-step** guide to help understand the code and how the system works.
