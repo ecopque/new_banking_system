@@ -69,7 +69,7 @@ This section provides visual examples of the program in action. Is reserved for 
 ---
 
 ## Developer Guide
-If you have any questions about the code, I have documented the most important lines with explanations on their functionality in the **log.txt** file. This file provides a **step-by-step** guide to help understand the code and how the system works.
+If you have any questions about the code, I have documented the most important lines with explanations on their functionality in the **log_code.txt** file. This file provides a **step-by-step** guide to help understand the code and how the system works.
 
 ---
 
