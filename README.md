@@ -9,7 +9,6 @@ This project is a fully object-oriented banking system developed in Python. The 
 - [Installation](#installation)  
 - [Usage](#usage)  
 - [Images](#images)  
-- [Project Structure Diagram](#project-structure-diagram)  
 - [Developer Guide](#developer-guide)  
 - [About the Author](#about-the-author)
 
