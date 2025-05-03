@@ -190,9 +190,8 @@ def F002_create_decorated_caFCT(cpf): #43:
     
     print(f'Decorated account #{F002_account_number} created for {F002_user_found.D001_name}.')
 
-
 def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawals, limit_withdrawals): #27: #33:
-    if not accounts_VARG: #28: #(1.2)
+    if not accounts_VARG: #28: #(1.2)dd
         print('No accounts available to withdraw from.')
         return balance, statement #28:
 
@@ -203,7 +202,7 @@ def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawal
     G001_account.C002_limit_withdrawals = limit_withdrawals
     G001_account.C002_number_withdrawals = number_withdrawals
 
-    G001_success = G001_account.C002_withdrawMTD(withdrawal) #30: #(1.6) #boolean
+    G001_success = G001_account.C002_withdrawMTD(withdrawal) #30: #boolean
 
     G001_new_balance = G001_account.C001_balance #31:
 
