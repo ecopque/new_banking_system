@@ -1,14 +1,142 @@
 # FILE: /log_uml.txt
 
-#A1:
-. Transaction (Interface). This is an abstract base class (or interface) for all transaction types. 
-. + __init__(value: float) – Constructor that stores the transaction value. 
-. + @register(account) – Abstract method that must be implemented by subclasses.
 
-#A2:
-. Deposit (inherits from Transaction). Represents a deposit transaction.
-. Implements register(account) to:
-    . Run validations (.verification)
-    . Increase balance (-> balance)
-    . Record in history (-> history)
-    . Call add_transaction() to store the event
+1. General Concept of the Program
+
+This is a simple banking system that allows the creation of users, bank accounts (standard and decorated), performing deposits, withdrawals, generating statements, and listing accounts.
+
+------------------------------------------------------------
+
+2. Architecture by Components
+
+A. Transactions (abstract superclass + concrete subclasses)
+
+A001_TransactionCLS (abstract class)
+- Responsible for defining the base interface of a transaction via the A001_registerMTD method.
+- Used for polymorphism: both deposits and withdrawals must "register" themselves on an account.
+- The abstract method forces subclasses to implement their specific logic.
+
+A002_DepositCLS (concrete subclass)
+- Implements A001_registerMTD.
+- If the value is positive, it increases the account balance and adds a description to the transaction history.
+
+A003_WithdrawCLS (concrete subclass)
+- Implements A001_registerMTD.
+- Checks if the account has enough balance and if the value is valid before subtracting from the balance.
+
+------------------------------------------------------------
+
+B. Transaction History
+
+B001_HistoryCLS
+- Stores all transaction descriptions (deposits and withdrawals).
+- Associated with a single account (each account has its own history).
+
+------------------------------------------------------------
+
+C. Bank Accounts (inheritance + specialization + encapsulation)
+
+C001_AccountCLS
+- Represents a basic bank account.
+- Contains:
+  - Account owner (C001_client)
+  - Balance (C001_balance)
+  - Withdrawal limit (C001_limit)
+  - Transaction history (C001_history)
+- Methods:
+  - C001_depositMTD(value)
+  - C001_withdrawMTD(value)
+- Uses TransactionCLS to register deposits or withdrawals.
+
+C002_CurrentAccountCLS (checking account with withdrawal limits)
+- Specializes C001_AccountCLS.
+- Adds:
+  - Daily withdrawal limit (C002_limit_withdrawals)
+  - Counter for daily withdrawals (C002_number_withdrawals)
+- Overrides C002_withdrawMTD to enforce the withdrawal count limit.
+
+C003_DecoratedCAAccountCLS
+- Inherits from C002_CurrentAccountCLS.
+- Adds encapsulation through properties (@property) for balance and limit.
+- Includes validations to ensure balance and limit are never negative.
+
+------------------------------------------------------------
+
+D. Client
+
+D001_ClientCLS
+- Represents a bank user (client).
+- Contains:
+  - Name, birthdate, CPF, address.
+  - List of associated accounts.
+- Method:
+  - D001_add_accountMTD(account) adds an account to the client.
+
+------------------------------------------------------------
+
+E. Global Variables
+
+users_VARG
+- Global list containing all users.
+
+accounts_VARG
+- Global list of all created accounts.
+
+------------------------------------------------------------
+
+F. System Functions
+
+E001_create_userFCT(...)
+- Creates a new user.
+- Verifies if the CPF already exists.
+- Adds the user to the global list users_VARG.
+
+F001_create_current_accountFCT(cpf)
+- Finds the client by CPF.
+- Creates a regular checking account (C002_CurrentAccountCLS).
+- Associates the account with the client and adds it to the global list.
+
+F002_create_decorated_caFCT(cpf)
+- Similar to the previous function, but creates a decorated account (C003_DecoratedCAAccountCLS).
+
+G001_withdrawFCT(...)
+- Accesses the last created account.
+- Sets withdrawal limit and daily withdrawal count.
+- Performs the withdrawal via C002_withdrawMTD.
+- Updates the statement (statement).
+
+H001_depositFCT(...)
+- Accesses the last created account.
+- Performs the deposit via C001_depositMTD.
+- Updates the statement (statement).
+
+I001_bank_statementFCT(...)
+- Displays the statement of the last created account, showing deposits and withdrawals separately.
+
+J001_list_accountsFCT()
+- Lists all created accounts with agency number, account number, and client name.
+
+------------------------------------------------------------
+
+3. Class Relationships
+
+D001_ClientCLS
+ └── has -> many C001_AccountCLS (or its subclasses)
+
+C001_AccountCLS
+ ├── uses -> B001_HistoryCLS
+ ├── calls -> A002_DepositCLS / A003_WithdrawCLS
+ └── can be -> C002_CurrentAccountCLS
+                  └── can be -> C003_DecoratedCAAccountCLS
+
+------------------------------------------------------------
+
+4. Conclusion
+
+- This code is modular and makes excellent use of object-oriented programming principles:
+  - Inheritance (between accounts)
+  - Encapsulation (via @property)
+  - Polymorphism (with transactions)
+  - Composition (client has accounts, account has history)
+
+- The global functions work as the system interface, simulating real usage without a graphical interface.
