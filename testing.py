@@ -35,3 +35,11 @@ class A003_WithdrawCLS(A001_TransactionCLS):
             account.C001_balance -= self.A001_value
             account.C001_history.B001_add_transactionMTD(f'Withdra: {self.A001_value}.')
             return True
+
+class B001_History():
+    def __init__(self):
+        self.B001_transaction = list()
+
+    def B001_add_transactionMTD(self, description: str):
+        self.B001_transaction.append(description)
+        print('Registered transaction.')
