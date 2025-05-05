@@ -36,10 +36,28 @@ class A003_WithdrawCLS(A001_TransactionCLS):
             account.C001_history.B001_add_transactionMTD(f'Withdra: {self.A001_value}.')
             return True
 
-class B001_History():
+class B001_HistoryCLS():
     def __init__(self):
         self.B001_transaction = list()
 
     def B001_add_transactionMTD(self, description: str):
         self.B001_transaction.append(description)
         print('Registered transaction.')
+
+class C001_AccountCLS():
+    def __init__(self, client, number, agency='0001', limit=500):
+        self.C001_client = client
+        self.C001_number = number
+        self.C001_agency = agency
+        self.C001_limit = limit
+
+        self.balance = 0
+        self.history = B001_HistoryCLS()
+
+    def C001_depositMTD(self, value):
+        C001_transaction = A002_DepositCLS(value)
+        return C001_transaction.A001_registerMTD(self)
+
+    def C001_withdrawMTD(self, value):
+        C001_transaction = A003_WithdrawCLS(value)
+        return C001_transaction.A001_registerMTD(self)
