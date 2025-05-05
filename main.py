@@ -65,6 +65,7 @@ class C001_AccountCLS:
         C001_transaction = A003_WithdrawCLS(value) #13:
         return C001_transaction.A001_registerMTD(self) #13:
 
+# Limits:
 class C002_CurrentAccountCLS(C001_AccountCLS): #14:
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3): #15:
         super().__init__(client, number, agency, limit) #15:
@@ -77,7 +78,7 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
             print('You have reached your daily withdrawal limit.')
             return False
 
-        if value > self.C001_limit: #17: #(1.6.1)
+        if value > self.C001_limit: #17:
             print(f'It is not possible to withdraw amounts above {self.C001_limit}.')
             return False
         
@@ -85,8 +86,7 @@ class C002_CurrentAccountCLS(C001_AccountCLS): #14:
             C002_success = super().C001_withdrawMTD(value) #18:
             if C002_success: #18:
                 self.C002_number_withdrawals += 1 #18:
-            
-            return C002_success # True or False
+                return C002_success # True or False
 
 class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS): #38:
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
