@@ -83,4 +83,43 @@ class C002_CurrentAccountCLS(C001_AccountCLS):
             if C002_success:
                 self.C002_number_withdrawals += 1
                 return C002_success
-    
+
+class C003_DecoratedCAAccountCLS(C002_CurrentAccountCLS):
+    def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
+        super().__init__(client, number, agency, limit, limit_withdrawals)
+
+    @property
+    def C003_depositMTD(self):
+        return self._C003_balance
+
+    @C003_depositMTD.setter
+    def C003_depositMTD(self, value):
+        if value < 0:
+            raise ValueError('Enter a positive value.')
+        
+        else:
+            self._C003_balance = value
+
+    @property
+    def C003_limitMTD(self):
+        return self._C003_limit
+
+    @C003_limitMTD.setter
+    def C003_limitMTD(self,value):
+        if value < 0:
+            raise ValueError('Enter a positive value.')
+        
+        else:
+            self._C003_limit = value
+
+class D001_ClientCLS:
+    def __init__(name, birth, cpf, address):
+        self.D001_name = name
+        self.D001_birth = birth
+        self.D001_cpf = cpf
+        self.D001_address = address
+
+        self.D001_accounts = list()
+
+    def D001_add_account(self, account):
+        self.D001_add_account.append(account)
