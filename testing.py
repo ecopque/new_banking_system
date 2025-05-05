@@ -65,7 +65,6 @@ class C001_AccountCLS():
 class C002_CurrentAccountCLS(C001_AccountCLS):
     def __init__(self, client, number, agency='0001', limit=500, limit_withdrawals=3):
         super().__init__(client, number, agency, limit)
-
         self.C002_limit_withdrawals = limit_withdrawals
 
         self.C002_number_withdrawals = 0
@@ -83,7 +82,5 @@ class C002_CurrentAccountCLS(C001_AccountCLS):
             C002_success = super().C001_withdrawMTD(value)
             if C002_success:
                 self.C002_number_withdrawals += 1
-                return True
-        
-
+                return C002_success
     
