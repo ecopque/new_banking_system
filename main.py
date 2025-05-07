@@ -3,6 +3,16 @@
 from abc import ABC, abstractmethod #1:
 import datetime
 
+#TODO: Decorator for logging transactions:
+def B002_log_transactionFCT(func):
+    def B002_wrapperFCT(self, *args, **kwargs):
+        B002_result = func(self, *args, **kwargs)
+        trans_name = func.__name__
+        print(f'[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Transaction: {trans_name}')
+        return B002_result
+    return B002_wrapperFCT
+
+
 # Abstract Classes and Subclasses (Polymorphism):
 class A001_TransactionCLS(ABC):
     def __init__(self, value: float): #2:
@@ -13,6 +23,7 @@ class A001_TransactionCLS(ABC):
         pass
 
 class A002_DepositCLS(A001_TransactionCLS):
+    @B002_log_transactionFCT #TODO: apply logging decorator.
     def A001_registerMTD(self, account): #4:
         if self.A001_value <= 0: #4:
             print('Enter only positive values.')
@@ -24,6 +35,7 @@ class A002_DepositCLS(A001_TransactionCLS):
             return True
 
 class A003_WithdrawCLS(A001_TransactionCLS):
+    @B002_log_transactionFCT #TODO: apply logging decorator.
     def A001_registerMTD(self, account): #6:
         if self.A001_value <= 0: #6:
             print('Enter only positive values.') #6:
@@ -45,15 +57,6 @@ class B001_HistoryCLS: #9:
 
     def B001_add_transactionMTD(self, description: str): #10:
         self.B001_transactions.append(description) #10:
-
-#TODO: Decorator for logging transactions:
-def B002_log_transactionFCT(func):
-    def B002_wrapperFCT(self, *args, **kwargs):
-        B002_result = func(self, *args, **kwargs)
-        trans_name = func.__name__
-        print(f'[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Transaction: {trans_name}')
-        return B002_result
-    return B002_wrapperFCT
 
 # Account and Subclass (Inheritance):
 class C001_AccountCLS:
