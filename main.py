@@ -64,7 +64,6 @@ class B001_HistoryCLS: #9:
             if filter_type is None or it7.startswith(filter_type):
                 yield it7
 
-
 # Account and Subclass (Inheritance):
 class C001_AccountCLS:
     def __init__(self, client, number, agency='0001', limit=500): #11:
