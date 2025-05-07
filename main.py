@@ -1,7 +1,7 @@
 # FILE: /main.py
 
 from abc import ABC, abstractmethod #1:
-# from datetime import date
+from datetime import date
 
 # Abstract Classes and Subclasses (Polymorphism):
 class A001_TransactionCLS(ABC):
@@ -214,7 +214,7 @@ def G001_withdrawFCT(*, balance, withdrawal, statement, limit, number_withdrawal
 
 
 def H001_depositFCT(balance, amount, statement, /):
-    if not accounts_VARG: #TODO: Obstructed flow. Check.
+    if not accounts_VARG:
         print('No accounts available to deposit into.')
         return balance, statement
 
@@ -229,7 +229,7 @@ def H001_depositFCT(balance, amount, statement, /):
     return H001_new_balance, statement
 
 def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
-    if not accounts_VARG: #TODO Obstructed flow? Check.
+    if not accounts_VARG:
         print('No accounts available.')
         return
 
