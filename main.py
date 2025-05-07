@@ -58,6 +58,13 @@ class B001_HistoryCLS: #9:
     def B001_add_transactionMTD(self, description: str): #10:
         self.B001_transactions.append(description) #10:
 
+    #TODO: generator for filtered transactions
+    def B001_transaction_generatorMTD(self, filter_type=None): 
+        for it7 in self.B001_transactions:
+            if filter_type is None or it7.startswith(filter_type):
+                yield it7
+
+
 # Account and Subclass (Inheritance):
 class C001_AccountCLS:
     def __init__(self, client, number, agency='0001', limit=500): #11:
