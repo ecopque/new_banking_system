@@ -1,7 +1,7 @@
 # FILE: /main.py
 
 from abc import ABC, abstractmethod #1:
-from datetime import date
+import datetime
 
 # Abstract Classes and Subclasses (Polymorphism):
 class A001_TransactionCLS(ABC):
@@ -45,6 +45,15 @@ class B001_HistoryCLS: #9:
 
     def B001_add_transactionMTD(self, description: str): #10:
         self.B001_transactions.append(description) #10:
+
+#TODO: Decorator for logging transactions:
+def B002_log_transactionFCT(func):
+    def B002_wrapperFCT(self, *args, **kwargs):
+        B002_result = func(self, *args, **kwargs)
+        trans_name = func.__name__
+        print(f'[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Transaction: {trans_name}')
+        return B002_result
+    return B002_wrapperFCT
 
 # Account and Subclass (Inheritance):
 class C001_AccountCLS:
@@ -264,6 +273,9 @@ def J001_list_accountsFCT():
             f'Number of account: {it5.C001_number}',
             f'User: {it5.C001_client.D001_name}'
         )
+
+
+
 
 # Menu:
 def K001_menuFCT():
