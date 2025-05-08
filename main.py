@@ -23,7 +23,7 @@ class A001_TransactionCLS(ABC):
         pass
 
 class A002_DepositCLS(A001_TransactionCLS):
-    @B002_log_transactionFCT #TODO: apply logging decorator.
+    @B002_log_transactionFCT #TODO: Apply logging decorator.
     def A001_registerMTD(self, account): #4:
         if self.A001_value <= 0: #4:
             print('Enter only positive values.')
@@ -35,7 +35,7 @@ class A002_DepositCLS(A001_TransactionCLS):
             return True
 
 class A003_WithdrawCLS(A001_TransactionCLS):
-    @B002_log_transactionFCT #TODO: apply logging decorator.
+    @B002_log_transactionFCT #TODO: Apply logging decorator.
     def A001_registerMTD(self, account): #6:
         if self.A001_value <= 0: #6:
             print('Enter only positive values.') #6:
@@ -58,7 +58,7 @@ class B001_HistoryCLS: #9:
     def B001_add_transactionMTD(self, description: str): #10:
         self.B001_transactions.append(description) #10:
 
-    #TODO: generator for filtered transactions
+    #TODO: Generator for filtered transactions
     def B001_transaction_generatorMTD(self, filter_type=None): 
         for it7 in self.B001_transactions:
             if filter_type is None or it7.startswith(filter_type):
@@ -82,6 +82,10 @@ class C001_AccountCLS:
     def C001_withdrawMTD(self, value): #13:
         C001_transaction = A003_WithdrawCLS(value) #13:
         return C001_transaction.A001_registerMTD(self) #13:
+
+    #TODO: Generator for reports:
+    def C001_transaction_report(self, filter_type=None):
+        return self.C001_history.B001_transaction_generatorMTD(filter_type)
 
 # Limits:
 class C002_CurrentAccountCLS(C001_AccountCLS): #14:
