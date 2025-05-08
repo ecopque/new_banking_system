@@ -326,7 +326,10 @@ def K001_menuFCT():
                                     '[6] - List accounts\n'
                                     '[7] - Exit\n'
                                     '[8] - Info\n'
-                                    '[9] - Create DECORATED current account: ')
+                                    '[9] - Create DECORATED current account\n'
+                                    '[10] - Transaction report\n'
+                                    'Select: '
+                                    )
             )
 
             if K001_options == 1:
@@ -390,6 +393,9 @@ def K001_menuFCT():
             elif K001_options == 9:
                 K001_cpf = input('Enter your CPF (numbers only): ')
                 F002_create_decorated_caFCT(K001_cpf)
+
+            elif K001_options == 10:
+                if 
 
             else:
                 print('Please enter a valid number.')
