@@ -307,9 +307,6 @@ def J001_list_accountsFCT():
             f'User: {it5.C001_client.D001_name}'
         )
 
-
-
-
 # Menu:
 def K001_menuFCT():
     K001_balance = 0
