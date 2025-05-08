@@ -152,6 +152,10 @@ class D001_ClientCLS: #19:
     def D001_add_accountMTD(self, account): #20:
         self.D001_accounts.append(account) #20:
 
+#TODO: Iterator over all accounts:
+class E001_IteratorAccountCLS:
+    ...
+
 
 # Global Lists & Original Functions:
 users_VARG = list() #21:
