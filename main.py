@@ -184,8 +184,8 @@ def E001_create_userFCT(name, birth, cpf: str, address: str): #22:
             return
         
     if not E001_cpf_exists: #22:
-        E001_new_userVARL = D001_ClientCLS(name, birth, cpf, address)
-        users_VARG.append(E001_new_userVARL)
+        E001_new_user = D001_ClientCLS(name, birth, cpf, address)
+        users_VARG.append(E001_new_user)
         print(f'User {name} created successfully.')
 
 def F001_create_current_accountFCT(cpf): #23:
