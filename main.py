@@ -411,7 +411,7 @@ def K001_menuFCT():
                         print('Account not found.')
 
                     else:
-                        K001_ftype = input('Filter by ("Deposit"/"Withdral"/leave blank): ')
+                        K001_ftype = input('Filter by ("Deposit"/"Withdrawal"): ')
                         print('TRANSACTION REPORT:')
                         
                         for it9 in K001_account.C001_transaction_report(K001_ftype):
