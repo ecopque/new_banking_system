@@ -154,7 +154,20 @@ class D001_ClientCLS: #19:
 
 #TODO: Iterator over all accounts:
 class E001_IteratorAccountCLS:
-    ...
+    def __init__(self, accounts):
+        self._E001_accounts = accounts
+        self._E001_index = 0
+
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self._E001_index < len(self._E001_accounts):
+            E001_acct = self._E001_accounts[self._E001_index]
+            E001_info = (E001_acct.C001_number, E001_acct.C001_balance, E001_acct.C001_client.D001_name)
+            self._E001_index += 1
+            return E001_info
+        raise StopIteration
 
 
 # Global Lists & Original Functions:
