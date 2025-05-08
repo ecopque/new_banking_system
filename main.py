@@ -7,8 +7,8 @@ import datetime
 def B002_log_transactionFCT(func):
     def B002_wrapperFCT(self, *args, **kwargs):
         B002_result = func(self, *args, **kwargs)
-        trans_name = func.__name__
-        print(f'[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Transaction: {trans_name}')
+        B002_trans_name = func.__name__
+        print(f'[{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] Transaction: {B002_trans_name}')
         return B002_result
     return B002_wrapperFCT
 
