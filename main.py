@@ -188,6 +188,7 @@ def E001_create_userFCT(name, birth, cpf: str, address: str): #22:
         users_VARG.append(E001_new_user)
         print(f'User {name} created successfully.')
 
+@B002_log_transactionFCT #TODO: Log account creation.
 def F001_create_current_accountFCT(cpf): #23:
     F001_user_found = None #24:
 
@@ -207,7 +208,9 @@ def F001_create_current_accountFCT(cpf): #23:
     F001_new_account = C002_CurrentAccountCLS(F001_user_found, F001_account_number) #26: 
     F001_user_found.D001_add_accountMTD(F001_new_account)
     accounts_VARG.append(F001_new_account)
+    print(f'Current account #{F001_account_number} created for {F001_user_found}.')
 
+@B002_log_transactionFCT #TODO: Log decorated account creation.
 def F002_create_decorated_caFCT(cpf): #43:
     F002_user_found = None
 
