@@ -390,12 +390,32 @@ def K001_menuFCT():
                     'Repository: https://github.com/ecopque/new_banking_system\n'
                     'Signal Messenger: ecop.01\n')
             
-            elif K001_options == 9:
+            elif K001_options == 9: #TODO: Transaction report option.
                 K001_cpf = input('Enter your CPF (numbers only): ')
                 F002_create_decorated_caFCT(K001_cpf)
 
             elif K001_options == 10:
-                if 
+                if not accounts_VARG:
+                    print('No accounts available.')
+                
+                else:
+                    K001_cpf = input('Enter CPF for report: ')
+                    K001_account = None
+                    
+                    for it8 in accounts_VARG:
+                        if it8.C001_client.D001_cpf == K001_cpf:
+                            K001_account = it8
+                            break
+                    
+                    if not K001_account:
+                        print('Account not found.')
+
+                    else:
+                        K001_ftype = input('Filter by ("Deposit"/"Withdral"/leave blank): ')
+                        print('TRANSACTION REPORT:')
+                        
+                        for it9 in K001_account.C001_transaction_report(K001_ftype):
+                            print(it9)
 
             else:
                 print('Please enter a valid number.')
