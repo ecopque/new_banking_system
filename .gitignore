@@ -161,6 +161,7 @@ nginx-https.env
 *.mm
 .mm
 step_by_step.txt
+curso.txt
 
 
 # Edson Copque | https://linktr.ee/edsoncopque
