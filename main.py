@@ -62,7 +62,8 @@ class B001_HistoryCLS: #9:
     #TODO: Generator for filtered transactions
     def B001_transaction_generatorMTD(self, filter_type=None): 
         for it7 in self.B001_transactions:
-            if filter_type is None or it7.startswith(filter_type):
+            # if filter_type is None or it7.startswith(filter_type):
+            if filter_type is None or filter_type in it7: #TODO:
                 yield it7
 
 # Account and Subclass (Inheritance):
@@ -118,7 +119,7 @@ class C001_AccountCLS:
         # return C001_transaction.A001_registerMTD(self) #13:
 
     #TODO: Generator for reports:
-    def C001_transaction_report(self, filter_type=None):
+    def C001_transaction_reportMTD(self, filter_type=None):
         return self.C001_history.B001_transaction_generatorMTD(filter_type)
 
 # Limits:
@@ -311,10 +312,12 @@ def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
 
     I001_account = accounts_VARG[-1]
     print('EXTRACT: ')
+
     print('DEPOSIT: ')
     if I001_account.C001_history.B001_transactions: #36:
         for it3 in I001_account.C001_history.B001_transactions: #36:
-            if it3.startswith('Deposit'): #36:
+            # if it3.startswith('Deposit'): #36:
+            if 'Deposit' in it3: #TODO:
                 print(it3)
     else:
         print('No deposit made.')
@@ -322,7 +325,8 @@ def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
     print('WITHDRAWALS: ')
     if I001_account.C001_history.B001_transactions: #37:
         for it4 in I001_account.C001_history.B001_transactions: #37:
-            if it4.startswith('Withdrawal'): #37:
+            # if it4.startswith('Withdrawal'): #37:
+            if 'Withdrawal' in it4: #TODO:
                 print(it4)
     else:
         print('No withdrawals made.')
@@ -448,7 +452,7 @@ def K001_menuFCT():
                         K001_ftype = input('Filter by ("Deposit"/"Withdrawal"): ')
                         print('TRANSACTION REPORT:')
                         
-                        for it9 in K001_account.C001_transaction_report(K001_ftype):
+                        for it9 in K001_account.C001_transaction_reportMTD(K001_ftype):
                             print(it9)
 
             else:
