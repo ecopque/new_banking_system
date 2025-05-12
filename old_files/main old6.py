@@ -80,7 +80,7 @@ class C001_AccountCLS:
         self.C001_daily_trans_count = 0 #TODO: Count.
         self.C001_daily_trans_limit = 10 #TODO: Limit.
 
-    def C001__reset_transaction_count_if_new_day(self): #TODO: 
+    def C001__reset_transaction_count_if_new_dayMTD(self): #TODO: 
         C001_today = datetime.date.today()
         if self.C001_last_trans_date != C001_today:
             self.C001_last_trans_date = C001_today
@@ -88,7 +88,7 @@ class C001_AccountCLS:
 
 
     def C001_depositMTD(self, value): #12:
-        self.C001__reset_transaction_count_if_new_day() #TODO:
+        self.C001__reset_transaction_count_if_new_dayMTD() #TODO:
 
         if self.C001_daily_trans_count >= self.C001_daily_trans_limit: #TODO:
             print('You have exceeded the 10 transactions daily limit.') #TODO:

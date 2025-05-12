@@ -56,7 +56,8 @@ class B001_HistoryCLS: #9:
         self.B001_transactions = list() #9:
 
     def B001_add_transactionMTD(self, description: str): #10:
-        self.B001_transactions.append(description) #10:
+        B001_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") #TODO: Include timestamp.
+        self.B001_transactions.append(f'[{B001_timestamp}] {description}') #10: #TODO: Include.
 
     #TODO: Generator for filtered transactions
     def B001_transaction_generatorMTD(self, filter_type=None): 
@@ -75,13 +76,46 @@ class C001_AccountCLS:
         self.C001_balance = 0 #11:
         self.C001_history = B001_HistoryCLS() #11:
 
+        self.C001_last_trans_date = datetime.date.today() #TODO: Track last transaction day.
+        self.C001_daily_trans_count = 0 #TODO: Count.
+        self.C001_daily_trans_limit = 10 #TODO: Limit.
+
+    def C001__reset_transaction_count_if_new_dayMTD(self): #TODO: 
+        C001_today = datetime.date.today()
+        if self.C001_last_trans_date != C001_today:
+            self.C001_last_trans_date = C001_today
+            self.C001_daily_trans_count = 0
+
     def C001_depositMTD(self, value): #12:
+        self.C001__reset_transaction_count_if_new_dayMTD() #TODO:
+
+        if self.C001_daily_trans_count >= self.C001_daily_trans_limit: #TODO:
+            print('You have exceeded the 10 transactions daily limit.') #TODO:
+            return False
+        
         C001_transaction = A002_DepositCLS(value) #12:
-        return C001_transaction.A001_registerMTD(self) #12:
+        
+        C001_success = C001_transaction.A001_registerMTD(self) #TODO:
+        if C001_success: #TODO:
+            self.C001_daily_trans_count += 1 #TODO:
+        return C001_success #TODO:
+
+        # return C001_transaction.A001_registerMTD(self) #12:
 
     def C001_withdrawMTD(self, value): #13:
-        C001_transaction = A003_WithdrawCLS(value) #13:
-        return C001_transaction.A001_registerMTD(self) #13:
+        self.C001__reset_transaction_count_if_new_dayMTD() #TODO:
+
+        if self.C001_daily_trans_count >= self.C001_daily_trans_limit:
+            print('You have exceeeded 10 transactions daily limit.') #TODO:
+            return False
+        
+        C001_transaction = A003_WithdrawCLS(value) #13: #TODO:
+        C001_success = C001_transaction.A001_registerMTD(self) #TODO:
+        if C001_success:
+            self.C001_daily_trans_count += 1
+        return C001_success
+    
+        # return C001_transaction.A001_registerMTD(self) #13:
 
     #TODO: Generator for reports:
     def C001_transaction_report(self, filter_type=None):
