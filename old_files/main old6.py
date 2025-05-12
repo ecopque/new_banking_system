@@ -1,7 +1,3 @@
-# FILE: /testing.py
-
-from abc import ABC, abstractclassmethod
-
 # FILE: /main.py
 
 from abc import ABC, abstractmethod #1:
@@ -29,58 +25,44 @@ class A001_TransactionCLS(ABC):
 class A002_DepositCLS(A001_TransactionCLS):
     @B002_log_transactionFCT #TODO: Apply logging decorator.
     def A001_registerMTD(self, account): #4:
-        # MODIFIED: Check daily transaction limit
-        if not account._check_and_update_daily_limit():
-            print("Você excedeu o número de transações permitidas para hoje.")
-            return False
-
         if self.A001_value <= 0: #4:
-            print("Enter only positive values.")
+            print('Enter only positive values.')
             return False
        
         else: #5:
             account.C001_balance += self.A001_value #5:
-            # MODIFIED: Add transaction with timestamp (timestamp added in B001_HistoryCLS)
-            account.C001_history.B001_add_transactionMTD(f"Deposit: R${self.A001_value:.2f}.") #5:
-            # ADDED: Increment daily transaction count
-            account.C001_daily_transaction_count += 1 # Increment count for successful transaction
+            account.C001_history.B001_add_transactionMTD(f'Deposit: R${self.A001_value:.2f}.') #5:
             return True
 
 class A003_WithdrawCLS(A001_TransactionCLS):
     @B002_log_transactionFCT #TODO: Apply logging decorator.
     def A001_registerMTD(self, account): #6:
-        # MODIFIED: Check daily transaction limit
-        if not account._check_and_update_daily_limit():
-            print("Você excedeu o número de transações permitidas para hoje.")
-            return False
-
         if self.A001_value <= 0: #6:
-            print("Enter only positive values.") #6:
+            print('Enter only positive values.') #6:
             return False #6:
         
         elif self.A001_value > account.C001_balance: #7:
-            print(f"You do not have enough balance. Current: R${account.C001_balance:.2f}.") #7:
+            print(f'You do not have enough balance. Current: R${account.C001_balance:.2f}.') #7:
             return False #7:
         
         else: #8:
             account.C001_balance -= self.A001_value #8:
-            # MODIFIED: Add transaction with timestamp (timestamp added in B001_HistoryCLS)
-            account.C001_history.B001_add_transactionMTD(f"Withdrawal: R${self.A001_value:.2f}.") #8:
-            # ADDED: Increment daily transaction count
-            account.C001_daily_transaction_count += 1 # Increment count for successful transaction
-            return True #8:# Support Classes:
+            account.C001_history.B001_add_transactionMTD(f'Withdrawal: R${self.A001_value:.2f}.') #8:
+            return True #8:
+
+# Support Classes:
 class B001_HistoryCLS: #9:
     def __init__(self): #9:
         self.B001_transactions = list() #9:
 
     def B001_add_transactionMTD(self, description: str): #10:
-        # MODIFIED: Store current timestamp with transaction description
-        now = datetime.datetime.now()
-        self.B001_transactions.append((now, description)) #10:    #TODO: Generator for filtered transactions
+        self.B001_transactions.append(description) #10:
+
+    #TODO: Generator for filtered transactions
     def B001_transaction_generatorMTD(self, filter_type=None): 
-        for timestamp, description in self.B001_transactions:
-            if filter_type is None or description.startswith(filter_type):
-                yield f"{timestamp.strftime('%Y-%m-%d %H:%M:%S')} - {description}"
+        for it7 in self.B001_transactions:
+            if filter_type is None or it7.startswith(filter_type):
+                yield it7
 
 # Account and Subclass (Inheritance):
 class C001_AccountCLS:
@@ -92,22 +74,6 @@ class C001_AccountCLS:
 
         self.C001_balance = 0 #11:
         self.C001_history = B001_HistoryCLS() #11:
-        # ADDED: Attributes for daily transaction limit
-        self.C001_daily_transaction_count = 0
-        self.C001_last_transaction_date = None # Will store datetime.date object
-        self.C001_TRANSACTION_LIMIT_PER_DAY = 10
-
-    # ADDED: Method to check and update daily transaction limit
-    def _check_and_update_daily_limit(self):
-        today = datetime.date.today()
-
-        if self.C001_last_transaction_date is None or self.C001_last_transaction_date != today:
-            self.C001_daily_transaction_count = 0
-            self.C001_last_transaction_date = today
-        
-        if self.C001_daily_transaction_count >= self.C001_TRANSACTION_LIMIT_PER_DAY:
-            return False
-        return True
 
     def C001_depositMTD(self, value): #12:
         C001_transaction = A002_DepositCLS(value) #12:
@@ -310,22 +276,21 @@ def I001_bank_statementFCT(balance, /, *, statement ): #34: #35:
         return
 
     I001_account = accounts_VARG[-1]
-    print("EXTRACT: ")
-    print("DEPOSIT: ")
-    # MODIFIED: Iterate through (timestamp, description) and print formatted
+    print('EXTRACT: ')
+    print('DEPOSIT: ')
     if I001_account.C001_history.B001_transactions: #36:
-        for timestamp, description in I001_account.C001_history.B001_transactions: #36:
-            if description.startswith("Deposit"): #36:
-                print(f"{timestamp.strftime('%Y-%m-%d %H:%M:%S')} - {description}")
+        for it3 in I001_account.C001_history.B001_transactions: #36:
+            if it3.startswith('Deposit'): #36:
+                print(it3)
     else:
         print('No deposit made.')
 
-    print("WITHDRAWALS: ")
-    # MODIFIED: Iterate through (timestamp, description) and print formatted
+    print('WITHDRAWALS: ')
     if I001_account.C001_history.B001_transactions: #37:
-        for timestamp, description in I001_account.C001_history.B001_transactions: #37:
-            if description.startswith("Withdrawal"): #37:
-                print(f"{timestamp.strftime("%Y-%m-%d %H:%M:%S")} - {description}")    else:
+        for it4 in I001_account.C001_history.B001_transactions: #37:
+            if it4.startswith('Withdrawal'): #37:
+                print(it4)
+    else:
         print('No withdrawals made.')
 
     print(f'Balance: {I001_account.C001_balance:.2f}.')
@@ -419,5 +384,44 @@ def K001_menuFCT():
 
             elif K001_options == 8:
                 print('### DEVELOPER DATA ###')
-             
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                print('Developed by: Edson Copque\n'
+                    'Hub: https://linktr.ee/edsoncopque\n'
+                    'GitHub: https://github.com/ecopque\n'
+                    'Repository: https://github.com/ecopque/new_banking_system\n'
+                    'Signal Messenger: ecop.01\n')
+            
+            elif K001_options == 9: #TODO: Transaction report option.
+                K001_cpf = input('Enter your CPF (numbers only): ')
+                F002_create_decorated_caFCT(K001_cpf)
+
+            elif K001_options == 10:
+                if not accounts_VARG:
+                    print('No accounts available.')
+                
+                else:
+                    K001_cpf = input('Enter CPF for report: ')
+                    K001_account = None
+                    
+                    for it8 in accounts_VARG:
+                        if it8.C001_client.D001_cpf == K001_cpf:
+                            K001_account = it8
+                            break
+                    
+                    if not K001_account:
+                        print('Account not found.')
+
+                    else:
+                        K001_ftype = input('Filter by ("Deposit"/"Withdrawal"): ')
+                        print('TRANSACTION REPORT:')
+                        
+                        for it9 in K001_account.C001_transaction_report(K001_ftype):
+                            print(it9)
+
+            else:
+                print('Please enter a valid number.')
+
+        except ValueError:
+            print(f'Please enter a valid input.')
+
+if __name__ == '__main__':
+    K001_menuFCT()
