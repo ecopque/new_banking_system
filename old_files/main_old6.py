@@ -3,68 +3,15 @@
 from abc import ABC, abstractmethod #1:
 import datetime
 
-
+#TODO: Decorator for logging transactions:
 def B002_log_transactionFCT(func):
-    def B002_wrapperFCT(*args, **kwargs):
-        B002_result = func(*args, **kwargs)
-        B002_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        #: Determines the name of the operation keeping the prefixes
-        if args and hasattr(args[0], '__class__'):
-            B002_trans_name = args[0].__class__.__name__
-        else:
-            B002_trans_name = func.__name__
-
-        B002_args = list()
-
-        #: Case 1: Transactions (Deposit/Withdrawal)
-        if args and hasattr(args[0], 'A001_value'):
-            transaction_value = args[0].A001_value
-            
-            #: Define transaction type with explicit if/else
-            transaction_type = ''
-            if args[0].__class__.__name__ == 'A002_DepositCLS':
-                transaction_type = 'Deposit'
-            else:
-                transaction_type = 'Withdrawal'
-            
-            B002_args.append(f'{transaction_type}: R${transaction_value:.2f}')
-
-        #: Case 2: Global Functions
-        else:
-            if args:
-                #: Check if it is a class method
-                is_method = False
-                if 'self' in func.__code__.co_varnames:
-                    is_method = True
-                
-                #: Set starting index
-                if is_method:
-                    start_idx = 1
-                else:
-                    start_idx = 0 
-                
-                #: Traditional loop to add valid arguments
-                current_idx = start_idx
-                while current_idx < len(args):
-                    arg = args[current_idx]
-                    if isinstance(arg, (int, float, str)):
-                        B002_args.append(arg)
-                    current_idx += 1
-
-        B002_args = tuple(B002_args)
-
-        B002_log_entry = (
-            f'[{B002_timestamp}] Operation: {B002_trans_name} | '
-            f'Details: {B002_args} | Kwargs: {kwargs} | '
-            f'Result: {B002_result}\n'
-        )
-
-        with open('log.txt', 'a', encoding='utf-8') as log_file:
-            log_file.write(B002_log_entry)
-        
+    def B002_wrapperFCT(self, *args, **kwargs):
+        B002_result = func(self, *args, **kwargs)
+        B002_trans_name = func.__name__
+        print(f'[{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] Transaction: {B002_trans_name}')
         return B002_result
     return B002_wrapperFCT
+
 
 # Abstract Classes and Subclasses (Polymorphism):
 class A001_TransactionCLS(ABC):
