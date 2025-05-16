@@ -2,3 +2,7 @@
 [2025-05-16 16:22:21] Operation: A002_DepositCLS | Details: ('Deposit: R$1500.00',) | Kwargs: {} | Result: True
 [2025-05-16 16:22:40] Operation: A002_DepositCLS | Details: ('Deposit: R$56.00',) | Kwargs: {} | Result: True
 [2025-05-16 16:23:03] Operation: A003_WithdrawCLS | Details: ('Withdrawal: R$100.00',) | Kwargs: {} | Result: True
+[2025-05-16 16:29:13] Operation: str | Details: ('12345678912',) | Kwargs: {} | Result: None
+[2025-05-16 16:29:24] Operation: A002_DepositCLS | Details: ('Deposit: R$953.00',) | Kwargs: {} | Result: True
+[2025-05-16 16:29:31] Operation: A002_DepositCLS | Details: ('Deposit: R$750.00',) | Kwargs: {} | Result: True
+[2025-05-16 16:29:34] Operation: A003_WithdrawCLS | Details: ('Withdrawal: R$15.00',) | Kwargs: {} | Result: True
